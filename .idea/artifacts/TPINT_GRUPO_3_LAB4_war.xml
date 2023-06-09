@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="TPINT_GRUPO_3_LAB4:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>TPINT_GRUPO_3_LAB4</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="TPINT_GRUPO_3_LAB4-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="TPINT_GRUPO_3_LAB4:war exploded" />
+    </root>
+  </artifact>
+</component>
