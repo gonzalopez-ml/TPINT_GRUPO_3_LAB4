@@ -32,6 +32,8 @@ public class Articulo implements Serializable {
     @Column(name="PrecioVenta")
     private double precioVenta;
 
+    @OneToOne(mappedBy = "articulo", cascade = CascadeType.ALL)
+    private Stock stock;
 
     //Constructor vacio
     public Articulo()

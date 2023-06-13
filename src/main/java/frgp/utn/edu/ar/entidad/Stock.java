@@ -16,7 +16,7 @@ public class Stock implements Serializable{
     @Column(name = "FechaIngreso")
     private Date fechaIngreso;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IdArticulo")
     private Articulo articulo;
 
