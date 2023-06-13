@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel= "stylesheet" href= "css/styles.css">
+    <link rel= "stylesheet" type="text/css" href= "css/styles.css">
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
 </head>

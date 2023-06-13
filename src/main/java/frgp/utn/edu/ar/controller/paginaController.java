@@ -7,10 +7,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class paginaController {
 
-    @RequestMapping("redireccionar_pag2.html")
+    @RequestMapping("irLogin.html")
     public ModelAndView evento() {
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("pagina2");
+        MV.setViewName("Login");
         return MV;
     }
 }
