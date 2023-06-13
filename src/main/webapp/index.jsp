@@ -2,15 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>MegaMayor</title>
 </head>
 <body>
 <br/>
-<a >Hello Servlet</a>
+<a>Hello Servlet</a>
 
+
+
+<!--
 <form action="redireccionar_pag2.html" method="get">
     <input type="submit" value="Redireccionar a pag 2" name="btnRedirigir">
 </form>
-
+-->
 </body>
 </html>
