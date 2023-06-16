@@ -65,6 +65,20 @@ public class articuloController {
         return articuloServicio.actualizarArticulo(articulo);
     }
 
+    @RequestMapping(value ="/articuloParaActualizar.html", method = RequestMethod.POST)
+    public ModelAndView articuloParaActualizar(@RequestParam String idArticuloAActualizar) {
+
+        //TODO make validations!
+        ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
+
+        Articulo articulo = articuloServicio.obtenerArticulo(idArticuloAActualizar);
+
+        ModelAndView MV = new ModelAndView();
+        MV.addObject("articulo", articulo);
+        MV.setViewName("modificarArticulo");
+        return MV;
+    }
+
     @RequestMapping(value ="/recuperarArticulos.html", method = RequestMethod.GET)
     @ResponseBody()
     public ArrayList<Articulo> recuperarArticulos() {

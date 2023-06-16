@@ -3,20 +3,20 @@ package frgp.utn.edu.ar.dto;
 import java.util.Date;
 
 public class ArticuloDTO {
-    String nombre;
-    String descripcion;
-    String marcaInput;
+    String nombre = null;
+    String descripcion = null;
+    String marcaInput = null;
 
-    Long marcaId;
-    String tipo;
+    Long marcaId = null;
+    String tipo = null;
 
-    Long tipoId;
-    Double precio;
-    Date fecha;
-    Integer cantidad;
-    Double precioCompra;
+    Long tipoId = null;
+    Double precio = null;
+    Date fecha = null;
+    Integer cantidad = null;
+    Double precioCompra = null;
 
-    Boolean estado;
+    Boolean estado = null;
 
     public Boolean getEstado() {
         return estado;

@@ -30,4 +30,9 @@ public class ArticuloServicio implements IArticuloServicio {
     public ResponseEntity actualizarArticulo(Articulo articulo) {
         return iArticuloDao.actualizarArticulo(articulo);
     }
+
+    @Override
+    public Articulo obtenerArticulo(String articuloId) {
+        return iArticuloDao.obtenerArticulo(articuloId);
+    }
 }
