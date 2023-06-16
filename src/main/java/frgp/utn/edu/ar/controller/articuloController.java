@@ -1,11 +1,11 @@
 package frgp.utn.edu.ar.controller;
 
-import com.ctc.wstx.exc.WstxOutputException;
-import frgp.utn.edu.ar.beans.Config;
+
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
+import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
