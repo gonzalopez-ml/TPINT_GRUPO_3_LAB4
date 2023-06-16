@@ -12,5 +12,5 @@ public interface IArticuloServicio {
 
     ResponseEntity<Object> actualizarArticulo(Articulo articulo);
 
-    Articulo obtenerArticulo(String articuloId);
+    Articulo obtenerArticulo(Long articuloId);
 }

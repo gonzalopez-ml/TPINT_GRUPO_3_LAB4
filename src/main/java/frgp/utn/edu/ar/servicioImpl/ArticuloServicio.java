@@ -32,7 +32,7 @@ public class ArticuloServicio implements IArticuloServicio {
     }
 
     @Override
-    public Articulo obtenerArticulo(String articuloId) {
+    public Articulo obtenerArticulo(Long articuloId) {
         return iArticuloDao.obtenerArticulo(articuloId);
     }
 }

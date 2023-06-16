@@ -67,13 +67,13 @@ public class ArticuloDaoImpl implements IArticuloDao {
     }
 
     @Override
-    public Articulo obtenerArticulo(String articuloId) {
+    public Articulo obtenerArticulo(Long articuloId) {
         ConfigHibernate ch = new ConfigHibernate();
         Session session= ch.abrirConexion();
 
         session.beginTransaction();
 
-        return (Articulo) session.load(Articulo.class, articuloId);
+        return  (Articulo) session.get(Articulo.class, articuloId);
     }
 
 }

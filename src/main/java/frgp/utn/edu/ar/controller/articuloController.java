@@ -65,8 +65,8 @@ public class articuloController {
         return articuloServicio.actualizarArticulo(articulo);
     }
 
-    @RequestMapping("/articuloParaActualizar.html",)
-    public ModelAndView articuloParaActualizar(String idArticuloAActualizar) {
+    @RequestMapping("/articuloParaActualizar.html")
+    public ModelAndView articuloParaActualizar(Long idArticuloAActualizar) {
 
         //TODO make validations!
         ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
