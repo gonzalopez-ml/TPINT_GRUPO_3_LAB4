@@ -67,12 +67,19 @@ public class articuloController {
 
     @RequestMapping(value ="/recuperarArticulos.html", method = RequestMethod.GET)
     @ResponseBody()
-    public ArrayList<Articulo> recuperarArticulos() {
-
+    public ModelAndView recuperarArticulos() {
+    	ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
         ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
-
-        return articuloServicio.obtenerArticulos();
+        ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+        for (Articulo articulo : arr) {
+        	System.out.println(articulo.getNombre());
+        	System.out.println(articulo.getDescripcion());
+        	System.out.println(articulo.getPrecioVenta());
+        }
+        MV.addObject("articulos", articuloServicio.obtenerArticulos());
+        
+        return MV;
     }
 
 
