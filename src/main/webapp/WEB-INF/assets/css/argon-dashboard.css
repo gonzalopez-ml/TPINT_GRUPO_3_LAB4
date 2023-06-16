@@ -4,6 +4,19 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
+.submenuuuu {
+position: absolute;
+  top: 100%;
+  left: 100%;
+  margin-top: -25px;
+  margin-left: 10px;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+ 
+ 
 :root {
   --bs-blue: #63B3ED;
   --bs-indigo: #596CFF;
@@ -685,6 +698,7 @@ progress {
   padding-left: calc(var(--bs-gutter-x) * 1);
   margin-right: auto;
   margin-left: auto;
+ 
 }
 
 @media (min-width: 576px) {
@@ -10540,7 +10554,7 @@ fieldset:disabled .btn {
 }
 
 .text-white {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 .text-body {
@@ -22532,7 +22546,7 @@ hr.horizontal.gray-light {
   bottom: 0;
   width: 100%;
   max-width: 15.625rem !important;
-  overflow-y: auto;
+  ove//rflow-y: auto;
   padding: 0;
   box-shadow: none;
   z-index: 9999;
@@ -26932,5 +26946,7 @@ pre[class*="language-"] {
     overflow: auto !important;
   }
 }
+
+
 
 /*# sourceMappingURL=dashboard-free.css.map */
