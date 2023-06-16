@@ -16,12 +16,14 @@
 </head>
 <body>
 <table id="tablaArticulos" class="display">
+
     <thead>
         <tr>
             <th>Nombre</th>
             <th>Descripción</th>
             <th>Precio de Venta</th>
             <th>Estado</th>
+            <th>Modificar</th>
         </tr>
     </thead>
     <tbody>
@@ -30,10 +32,16 @@
             <td><%= articulo.getNombre() %></td>
             <td><%= articulo.getDescripcion() %></td>
             <td><%= articulo.getPrecioVenta() %></td>
-            <td><%= articulo.getEstado() ? "Activo" : "Inactivo" %></td>
+            <td><%= articulo.getEstado() %></td>
+            <td>     <form action="articuloParaActualizar.html" method="get">
+                <input type="hidden" name="idArticuloActualizar" value="<%= articulo.getId() %>">
+                <button type="submit">Modificar</button>
+            </form>
+            </td>
         </tr>
         <% } %>
     </tbody>
+
 </table>
 
 </body>

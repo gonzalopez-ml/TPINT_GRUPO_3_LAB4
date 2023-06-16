@@ -65,8 +65,8 @@ public class articuloController {
         return articuloServicio.actualizarArticulo(articulo);
     }
 
-    @RequestMapping(value ="/articuloParaActualizar.html", method = RequestMethod.POST)
-    public ModelAndView articuloParaActualizar(@RequestParam String idArticuloAActualizar) {
+    @RequestMapping("/articuloParaActualizar.html",)
+    public ModelAndView articuloParaActualizar(String idArticuloAActualizar) {
 
         //TODO make validations!
         ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
@@ -86,11 +86,6 @@ public class articuloController {
         //TODO make validations!
         ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
         ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
-        for (Articulo articulo : arr) {
-        	System.out.println(articulo.getNombre());
-        	System.out.println(articulo.getDescripcion());
-        	System.out.println(articulo.getPrecioVenta());
-        }
         MV.addObject("articulos", articuloServicio.obtenerArticulos());
         
         return MV;
