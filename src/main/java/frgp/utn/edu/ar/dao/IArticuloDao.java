@@ -1,16 +1,15 @@
 package frgp.utn.edu.ar.dao;
 
 import frgp.utn.edu.ar.entidad.Articulo;
+import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 
 public interface IArticuloDao {
 
-    void insertarArticulo(Articulo articulo);
+    ResponseEntity insertarArticulo(Articulo articulo);
 
     ArrayList<Articulo> obtenerArticulos();
 
-    void eliminarArticulo(Articulo idArticulo);
-
-    void actualizarArticulo(Articulo articulo);
+    ResponseEntity<Object> actualizarArticulo(Articulo articulo);
 }

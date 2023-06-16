@@ -1,6 +1,7 @@
 package frgp.utn.edu.ar.resources;
 
 
+import frgp.utn.edu.ar.dao.IArticuloDao;
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;

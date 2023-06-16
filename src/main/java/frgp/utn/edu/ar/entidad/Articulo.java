@@ -35,11 +35,23 @@ public class Articulo implements Serializable {
     @OneToOne(mappedBy = "articulo", cascade = CascadeType.ALL)
     private Stock stock;
 
+    @Column(name="estado")
+    private Boolean estado;
+
     //Constructor vacio
     public Articulo()
     {
 
     }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
     public Long getId(){
 
         return id;

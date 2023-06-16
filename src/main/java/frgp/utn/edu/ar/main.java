@@ -1,5 +1,6 @@
 package frgp.utn.edu.ar;
 
+import frgp.utn.edu.ar.dao.ConfigHibernate;
 import frgp.utn.edu.ar.entidad.Cliente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -21,13 +22,6 @@ public class main {
         Session session = sessionFactory.openSession();
 
         session.beginTransaction();
-
-        Cliente cliente = new Cliente();
-        cliente.setApellido("hola");
-        session.save(cliente);
-
-        session.getTransaction().commit();
-
         sessionFactory.close();
 
     }
