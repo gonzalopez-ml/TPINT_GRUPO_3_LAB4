@@ -65,4 +65,15 @@ public class ArticuloDaoImpl implements IArticuloDao {
         session.close();
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @Override
+    public Articulo obtenerArticulo(String articuloId) {
+        ConfigHibernate ch = new ConfigHibernate();
+        Session session= ch.abrirConexion();
+
+        session.beginTransaction();
+
+        return (Articulo) session.load(Articulo.class, articuloId);
+    }
+
 }
