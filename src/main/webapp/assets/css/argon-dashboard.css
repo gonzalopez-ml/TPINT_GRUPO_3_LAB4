@@ -5,6 +5,70 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
  
+  .pagination {
+      display: flex;
+      justify-content: right;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      color: #000;
+      padding: 8px 16px;
+      text-decoration: none;
+	  font-size:10px;
+    }
+
+    .pagination a:hover {
+      background-color: #ddd;
+    }
+
+    .pagination .active {
+      background-color: #5e72e4;
+      color: white;
+    }
+
+    .action-icons {
+       display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .action-icons i {
+      cursor: pointer;
+      margin: 0 5px;
+	   justify-content: center;
+    }
+	
+	  .action-icons-col {
+      
+	   text-align: center;
+    }
+ 
+.search-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      width: 300px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .search-container input[type="text"] {
+      border: none;
+      outline: none;
+      padding: 0 8px;
+    }
+
+    .search-container input[type="text"]::placeholder {
+      color: #aaa;
+    }
+
+    .search-container i {
+      margin-left: 8px;
+      color: #aaa;
+    }
+ 
 .label-input {
   font-size: 0.75rem;
   font//-weight: 700;
@@ -10321,6 +10385,7 @@ fieldset:disabled .btn {
 
 .ps-4 {
   padding-left: 1.5rem !important;
+ 
 }
 
 .ps-5 {
@@ -10509,6 +10574,7 @@ fieldset:disabled .btn {
 
 .text-uppercase {
   text-transform: uppercase !important;
+   
 }
 
 .text-capitalize {
