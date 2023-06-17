@@ -61,7 +61,6 @@ public class ArticuloDaoImpl implements IArticuloDao {
             session.close();
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
-
         session.close();
         return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
     }

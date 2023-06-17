@@ -11,7 +11,7 @@ public interface IArticuloDao {
 
     ArrayList<Articulo> obtenerArticulos();
 
-    ResponseEntity<Object> actualizarArticulo(Articulo articulo);
+    ResponseEntity actualizarArticulo(Articulo articulo);
 
     Articulo obtenerArticulo(Long articuloId);
 }
