@@ -44,6 +44,18 @@ public class Articulo implements Serializable {
 
     }
 
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Boolean getEstado() {
         return estado;
     }

@@ -44,6 +44,10 @@
 
 </table>
 
+<form action="guardar_archivo.html" method="get">
+    <input type="hidden" name="" value="">
+    <button type="submit">Crear articulo</button>
+</form>
 </body>
 <script>
 $(document).ready(function() {

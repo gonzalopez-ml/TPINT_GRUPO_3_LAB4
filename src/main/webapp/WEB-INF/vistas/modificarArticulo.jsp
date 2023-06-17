@@ -17,7 +17,10 @@
 <body>
 
 
-<form action="actualizarArticulo" method="post">
+<form action="actualizarArticulo.html" method="get">
+    <label for="Id">Id:</label>
+    <input type="number" id="Id" name="Id" value="<%= articulos.getId() %>"><br>
+
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" value="<%= articulos.getNombre() %>"><br>
 
@@ -34,7 +37,7 @@
     <input type="number" id="precio" name="precio" value="<%= articulos.getPrecioVenta() %>"><br>
 
     <label for="estado">estado:</label>
-    <input type="text" id="estado" name="fecha" value="<%= articulos.getEstado() %>"><br>
+    <input type="text" id="estado" name="estado" value="<%= articulos.getEstado() %>"><br>
 
     <input type="submit" value="Modificar" name="btnRedirigir">
 </form>

@@ -15,7 +15,7 @@
 <body>
 <h1>Registro de Artículos</h1>
 
-<form action="guardarArticulo" method="post">
+<form action="guardarArticulo.html" method="get">
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" required><br>
 
@@ -37,10 +37,10 @@
     <label for="cantidad">cantidad:</label>
     <input type="number" id="cantidad" name="cantidad" required><br>
 
-    <label for="precio de compra">precio de compra:</label>
-    <input type="number" id="precio de compra" name="precioCompra" required><br>
+    <label for="precioCompra">precio de compra:</label>
+    <input type="number" id="precioCompra" name="precioCompra" required><br>
 
-    <input type="submit" value="Guardar" name="btnRedirigir">
+    <input type="submit" value="Guardar">
 </form>
 </body>
 

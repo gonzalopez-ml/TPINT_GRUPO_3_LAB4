@@ -58,6 +58,10 @@ public class Stock implements Serializable{
         this.cantidad = cantidad;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public double getPrecioCompra() {
         return precioCompra;
     }
