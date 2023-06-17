@@ -1,7 +1,6 @@
 package frgp.utn.edu.ar.controller;
 
 
-import frgp.utn.edu.ar.dto.ArticuloDTO;
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
@@ -10,9 +9,7 @@ import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -27,33 +24,37 @@ public class articuloController {
     ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 
     @RequestMapping("/guardarArticulo.html")
-    @ResponseBody()
-    public ResponseEntity guardarArticulo(String nombre, String descripcion, Long marca1, Long tipo, Double precio,
-                                          Date fecha, Integer cantidad, Double precioCompra) {
+    public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
+                                        Integer cantidad, Double precioCompra) {
 
         //TODO make validations!
         Articulo articulo = (Articulo) appContext.getBean("articulo");
         Stock stock =  (Stock) appContext.getBean("stock");
-        Marca marca =  (Marca) appContext.getBean("marca");
+        Marca marca1 =  (Marca) appContext.getBean("marca");
         TipoArticulo tipoArticulo =  (TipoArticulo) appContext.getBean("tipoArticulo");
         ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
 
-        marca.setId(marca1);
+        marca1.setId(marca);
         tipoArticulo.setId(tipo);
 
         articulo.setNombre(nombre);
         articulo.setDescripcion(descripcion);
         articulo.setPrecioVenta(precio);
         articulo.setTipoArticulo(tipoArticulo);
-        articulo.setMarca(marca);
+        articulo.setMarca(marca1);
         articulo.setEstado(true);
 
         stock.setCantidad(cantidad);
-        stock.setFechaIngreso(fecha);
+        stock.setFechaIngreso(new Date());
         stock.setPrecioCompra(precioCompra);
         stock.setArticulo(articulo);
 
-        return articuloServicio.insertarArticulo(articulo);
+        ModelAndView MV = new ModelAndView("listarArticulos");
+        //TODO make validations!
+        ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+        MV.addObject("articulos", articuloServicio.obtenerArticulos());
+
+        return MV;
     }
 
     @RequestMapping("/actualizarArticulo.html")

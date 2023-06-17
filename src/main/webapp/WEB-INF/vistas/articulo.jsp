@@ -10,9 +10,9 @@
 <head>
     <title>Articulo</title>
 </head>
-<body>
 
 <body>
+
 <h1>Registro de Artículos</h1>
 
 <form action="guardarArticulo.html" method="get">
@@ -31,18 +31,14 @@
     <label for="precio">Precio de Venta:</label>
     <input type="number" id="precio" name="precio" required><br>
 
-    <label for="fecha">Fecha ingreso:</label>
-    <input type="date" id="fecha" name="fecha" required><br>
-
     <label for="cantidad">cantidad:</label>
     <input type="number" id="cantidad" name="cantidad" required><br>
 
     <label for="precioCompra">precio de compra:</label>
     <input type="number" id="precioCompra" name="precioCompra" required><br>
 
-    <input type="submit" value="Guardar">
+    <button type="submit">Guardar</button>
 </form>
-</body>
 
 </body>
 </html>
