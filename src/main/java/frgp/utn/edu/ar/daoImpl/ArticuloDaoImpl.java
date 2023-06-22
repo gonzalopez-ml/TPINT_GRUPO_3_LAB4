@@ -8,12 +8,13 @@ import org.hibernate.Transaction;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class ArticuloDaoImpl implements IArticuloDao {
-
-    private HibernateTemplate hibernateTemplate;
 
     @Override
     public ResponseEntity insertarArticulo(Articulo articulo) {

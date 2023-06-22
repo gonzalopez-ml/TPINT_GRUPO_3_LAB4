@@ -7,6 +7,8 @@ import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -20,22 +22,33 @@ import java.util.Date;
 
 @Controller
 public class articuloController {
+    @Autowired
+    @Qualifier("articuloServicio")
+    private ArticuloServicio articuloServicio;
 
-    ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+    @Autowired
+    private Articulo articulo;
+
+    @Autowired
+    private Stock stock;
+
+    @Autowired
+    private Marca marca1;
+
+    @Autowired
+    private TipoArticulo tipoArticulo;
 
     @RequestMapping("/guardarArticulo.html")
     public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
                                         Integer cantidad, Double precioCompra) {
 
-        //TODO make validations!
-        Articulo articulo = (Articulo) appContext.getBean("articulo");
-        Stock stock =  (Stock) appContext.getBean("stock");
-        Marca marca1 =  (Marca) appContext.getBean("marca");
-        TipoArticulo tipoArticulo =  (TipoArticulo) appContext.getBean("tipoArticulo");
-        ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
-
         marca1.setId(marca);
         tipoArticulo.setId(tipo);
+
+        stock.setCantidad(cantidad);
+        stock.setFechaIngreso(new Date());
+        stock.setPrecioCompra(precioCompra);
+        stock.setArticulo(articulo);
 
         articulo.setNombre(nombre);
         articulo.setDescripcion(descripcion);
@@ -43,16 +56,16 @@ public class articuloController {
         articulo.setTipoArticulo(tipoArticulo);
         articulo.setMarca(marca1);
         articulo.setEstado(true);
-
-        stock.setCantidad(cantidad);
-        stock.setFechaIngreso(new Date());
-        stock.setPrecioCompra(precioCompra);
-        stock.setArticulo(articulo);
+        articulo.setStock(stock);
 
         ModelAndView MV = new ModelAndView("listarArticulos");
+
         //TODO make validations!
-        ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
-        MV.addObject("articulos", articuloServicio.obtenerArticulos());
+
+        articuloServicio.insertarArticulo(articulo);
+
+        ArrayList<Articulo> articulos= articuloServicio.obtenerArticulos();
+        MV.addObject("articulos", articulos);
 
         return MV;
     }
@@ -61,10 +74,7 @@ public class articuloController {
     @ResponseBody()
     public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, String marca, String tipo, Double precio, Boolean estado) {
         //TODO make validations!
-        Articulo articulo = (Articulo) appContext.getBean("articulo");
-        Marca marca1 =  (Marca) appContext.getBean("marca");
-        TipoArticulo tipoArticulo =  (TipoArticulo) appContext.getBean("tipoArticulo");
-        Stock stock =  (Stock) appContext.getBean("stock");
+
 
         //TODO ir a buscar el que ID es a la base, mientras harcodeamos.
         stock.setId(1L);
@@ -91,8 +101,6 @@ public class articuloController {
 
         //TODO ir a buscar el que ID es a la base, mientras harcodeamos.
 
-        ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
-
         articuloServicio.actualizarArticulo(articulo);
 
 
@@ -108,8 +116,6 @@ public class articuloController {
     public ModelAndView articuloParaActualizar(Long idArticuloAActualizar) {
 
         //TODO make validations!
-        ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
-
         Articulo articulo = articuloServicio.obtenerArticulo(idArticuloAActualizar);
 
         ModelAndView MV = new ModelAndView();
@@ -123,9 +129,8 @@ public class articuloController {
     public ModelAndView recuperarArticulos() {
     	ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
-        ArticuloServicio articuloServicio =  (ArticuloServicio) appContext.getBean("articuloServicio");
         ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
-        MV.addObject("articulos", articuloServicio.obtenerArticulos());
+        MV.addObject("articulos", arr);
         
         return MV;
     }
