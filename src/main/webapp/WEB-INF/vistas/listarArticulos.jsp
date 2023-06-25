@@ -3,8 +3,9 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%@page import="frgp.utn.edu.ar.entidad.Articulo" %>
-<% ArrayList<Articulo> articulos = (ArrayList<Articulo>) request.getAttribute("articulos"); %>    
-   
+<% ArrayList<Articulo> articulos = (ArrayList<Articulo>) request.getAttribute("articulos"); %>
+<% String mensaje = (String) request.getAttribute("mensajeGuardado"); %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -24,18 +25,24 @@
             <th>Precio de Venta</th>
             <th>Estado</th>
             <th>Modificar</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
-        <% for (Articulo articulo : articulos) { %>
+    <% for (Articulo articulo : articulos) { %>
         <tr>
             <td><%= articulo.getNombre() %></td>
             <td><%= articulo.getDescripcion() %></td>
             <td><%= articulo.getPrecioVenta() %></td>
             <td><%= articulo.getEstado() %></td>
-            <td>     <form action="articuloParaActualizar.html" method="get">
+            <td> <form action="articuloParaActualizar.html" method="get">
                 <input type="hidden" name="idArticuloAActualizar" value="<%= articulo.getId() %>">
                 <button type="submit">Modificar</button>
+            </form>
+            </td>
+            <td> <form action="eliminarArticulo.html" method="get">
+                <input type="hidden" name="idArticuloAeliminar" value="<%= articulo.getId() %>">
+                <button type="submit">Eliminar</button>
             </form>
             </td>
         </tr>
@@ -49,6 +56,14 @@
     <button type="submit">Crear articulo</button>
 </form>
 </body>
+
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
+
+
 <script>
 $(document).ready(function() {
     $('#tablaArticulos').DataTable({

@@ -2,9 +2,10 @@ package frgp.utn.edu.ar.servicioImpl;
 
 import frgp.utn.edu.ar.dao.IArticuloDao;
 import frgp.utn.edu.ar.entidad.Articulo;
+import frgp.utn.edu.ar.entidad.Marca;
+import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.servicio.IArticuloServicio;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ public class ArticuloServicio implements IArticuloServicio {
     private IArticuloDao articuloDao;
 
     @Override
-    public ResponseEntity insertarArticulo(Articulo articulo) {
+    public String insertarArticulo(Articulo articulo) {
         return articuloDao.insertarArticulo(articulo);
     }
 
@@ -26,12 +27,32 @@ public class ArticuloServicio implements IArticuloServicio {
     }
 
     @Override
-    public ResponseEntity actualizarArticulo(Articulo articulo) {
-        return articuloDao.actualizarArticulo(articulo);
+    public String actualizarArticulo(Articulo articulo) {
+        return null;
+    }
+
+    @Override
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
+        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio);
     }
 
     @Override
     public Articulo obtenerArticulo(Long articuloId) {
         return articuloDao.obtenerArticulo(articuloId);
+    }
+
+    @Override
+    public ArrayList<Marca> obtenerMarcas() {
+        return articuloDao.obtenerMarcas();
+    }
+
+    @Override
+    public ArrayList<TipoArticulo> obtenerTipoArticulo() {
+        return articuloDao.obtenerTipoArticulos();
+    }
+
+    @Override
+    public String eliminarArticulo(Long id) {
+        return articuloDao.eliminarArticulo(id);
     }
 }

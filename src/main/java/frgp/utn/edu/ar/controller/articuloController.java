@@ -42,6 +42,7 @@ public class articuloController {
     public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
                                         Integer cantidad, Double precioCompra) {
 
+
         marca1.setId(marca);
         tipoArticulo.setId(tipo);
 
@@ -58,13 +59,14 @@ public class articuloController {
         articulo.setEstado(true);
         articulo.setStock(stock);
 
-        ModelAndView MV = new ModelAndView("listarArticulos");
 
         //TODO make validations!
 
-        articuloServicio.insertarArticulo(articulo);
+        String seGuardo = articuloServicio.insertarArticulo(articulo);
 
+        ModelAndView MV = new ModelAndView("listarArticulos");
         ArrayList<Articulo> articulos= articuloServicio.obtenerArticulos();
+        MV.addObject("mensajeGuardado", seGuardo);
         MV.addObject("articulos", articulos);
 
         return MV;
@@ -72,41 +74,21 @@ public class articuloController {
 
     @RequestMapping("/actualizarArticulo.html")
     @ResponseBody()
-    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, String marca, String tipo, Double precio, Boolean estado) {
+    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
         //TODO make validations!
-
-
-        //TODO ir a buscar el que ID es a la base, mientras harcodeamos.
-        stock.setId(1L);
-        stock.setCantidad(4);
-        stock.setPrecioCompra(precio);
-        stock.setFechaIngreso(new Date());
-        marca1.setMarca(marca);
-        marca1.setId(1L);
-        tipoArticulo.setNombreTipo(tipo);
-        tipoArticulo.setId(1L);
-        //TODO ir a buscar el que ID es a la base, mientras harcodeamos.
-
 
         articulo.setNombre(nombre);
         articulo.setDescripcion(descripcion);
-        articulo.setTipoArticulo(tipoArticulo);
         articulo.setPrecioVenta(precio);
-        articulo.setEstado(estado);
-        articulo.setMarca(marca1);
         articulo.setId(Id);
         articulo.setStock(stock);
 
-        stock.setArticulo(articulo);
-
-        //TODO ir a buscar el que ID es a la base, mientras harcodeamos.
-
-        articuloServicio.actualizarArticulo(articulo);
-
+        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio);
 
         ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
         ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+        MV.addObject("mensajeGuardado", seGuardo);
         MV.addObject("articulos", articuloServicio.obtenerArticulos());
 
         return MV;
@@ -130,8 +112,29 @@ public class articuloController {
     	ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
         ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+
+        if (arr.isEmpty()) {
+            MV.addObject("data-empty-message", "No existen articulos en la base");
+        }
+
         MV.addObject("articulos", arr);
         
+        return MV;
+    }
+
+    @RequestMapping(value ="/eliminarArticulo.html", method = RequestMethod.GET)
+    @ResponseBody()
+    public ModelAndView eliminarArticulo(Long idArticuloAeliminar) {
+
+        String seGuardo = articuloServicio.eliminarArticulo(idArticuloAeliminar);
+
+        //TODO make validations!
+        ModelAndView MV = new ModelAndView("listarArticulos");
+        ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+
+        MV.addObject("mensajeGuardado", seGuardo);
+        MV.addObject("articulos", arr);
+
         return MV;
     }
 
@@ -139,7 +142,18 @@ public class articuloController {
     @RequestMapping("/guardar_archivo.html")
     public ModelAndView evento() {
         ModelAndView MV = new ModelAndView();
+
+        //marcas
+        ArrayList<Marca> marcas = articuloServicio.obtenerMarcas();
+
+        //tipos de articulo
+        ArrayList<TipoArticulo> tipoArticulos = articuloServicio.obtenerTipoArticulo();
+
+
         MV.setViewName("articulo");
+        MV.addObject("marcas", marcas);
+        MV.addObject("tipoArticulos", tipoArticulos);
+
         return MV;
     }
 
