@@ -22,6 +22,9 @@ import java.util.Date;
 
 @Controller
 public class articuloController {
+
+    ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
+
     @Autowired
     @Qualifier("articuloServicio")
     private ArticuloServicio articuloServicio;
@@ -29,19 +32,15 @@ public class articuloController {
     @Autowired
     private Articulo articulo;
 
-    @Autowired
-    private Stock stock;
-
-    @Autowired
-    private Marca marca1;
-
-    @Autowired
-    private TipoArticulo tipoArticulo;
-
     @RequestMapping("/guardarArticulo.html")
     public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
                                         Integer cantidad, Double precioCompra) {
 
+
+        Articulo articulo = (Articulo) appContext.getBean("articulo");
+        Stock stock =  (Stock) appContext.getBean("stock");
+        Marca marca1 =  (Marca) appContext.getBean("marca");
+        TipoArticulo tipoArticulo =  (TipoArticulo) appContext.getBean("tipoArticulo");
 
         marca1.setId(marca);
         tipoArticulo.setId(tipo);
@@ -81,7 +80,6 @@ public class articuloController {
         articulo.setDescripcion(descripcion);
         articulo.setPrecioVenta(precio);
         articulo.setId(Id);
-        articulo.setStock(stock);
 
         String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio);
 
