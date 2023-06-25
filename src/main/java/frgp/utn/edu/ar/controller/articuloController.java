@@ -29,9 +29,6 @@ public class articuloController {
     @Qualifier("articuloServicio")
     private ArticuloServicio articuloServicio;
 
-    @Autowired
-    private Articulo articulo;
-
     @RequestMapping("/guardarArticulo.html")
     public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
                                         Integer cantidad, Double precioCompra) {
@@ -75,6 +72,8 @@ public class articuloController {
     @ResponseBody()
     public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
         //TODO make validations!
+
+        Articulo articulo = (Articulo) appContext.getBean("articulo");
 
         articulo.setNombre(nombre);
         articulo.setDescripcion(descripcion);
