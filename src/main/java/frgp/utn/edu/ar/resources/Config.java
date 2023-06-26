@@ -5,6 +5,7 @@ import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
+import frgp.utn.edu.ar.entidad.Usuario;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
@@ -41,6 +42,13 @@ public class Config {
     public Marca marca() {
         Marca marca = new Marca();
         return marca;
+    }
+
+    //Beans Usuario
+    @Bean
+    @Scope("prototype")
+    public Usuario usuario() {
+        return new Usuario();
     }
 
 }
