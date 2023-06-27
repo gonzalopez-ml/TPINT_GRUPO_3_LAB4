@@ -19,7 +19,7 @@ public class Cliente implements Serializable{
     private Long id;
 
     @Column(name="Dni")
-    private String DNI;
+    private String dni;
 
     @Column(name="Nombre")
     private String nombre;
@@ -30,8 +30,9 @@ public class Cliente implements Serializable{
     @Column(name="Sexo")
     private char sexo;
 
+    @Temporal(TemporalType.TIMESTAMP)	
     @Column(name="FechaNacimiento")
-    private Date fechaNacimiento;
+    private Date fechanacimiento;
 
     @Column(name="Direccion")
     private String direccion;
@@ -44,20 +45,29 @@ public class Cliente implements Serializable{
 
     @Column(name="Telefono")
     private String telefono;
+    
+    @Column(name="Estado")
+    private int estado;
 
     public Long getId() {
 
         return id;
     }
 
-    public String getDNI() {
+    
+    public void setId(Long id) {
+		// TODO Auto-generated method stub
+		this.id = id;
+	}
+    
+    public String getDni() {
 
-        return DNI;
+        return dni;
     }
 
-    public void setDNI(String DNI) {
+    public void setDni(String dni) {
 
-        this.DNI = DNI;
+        this.dni = dni;
     }
 
     public String getNombre() {
@@ -90,13 +100,13 @@ public class Cliente implements Serializable{
         this.sexo = sexo;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
+    public Date getFechanacimiento() {
+        return fechanacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechanacimiento(Date fechanacimiento) {
 
-        this.fechaNacimiento = fechaNacimiento;
+        this.fechanacimiento = fechanacimiento;
     }
 
     public String getDireccion() {
@@ -137,20 +147,34 @@ public class Cliente implements Serializable{
 
         this.telefono = telefono;
     }
+    
+    public int getEstado() {
+        return this.estado;
+    }
 
-    @Override
+    public int isEstado() {
+		return estado;
+	}
+
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+
+	@Override
     public String toString() {
         return "Cliente{" +
                 "id='" + id + '\'' +
-                ", DNI='" + DNI + '\'' +
+                ", DNI='" + dni + '\'' +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", sexo=" + sexo +
-                ", fechaNacimiento=" + fechaNacimiento +
+                ", fechaNacimiento=" + fechanacimiento +
                 ", direccion='" + direccion + '\'' +
                 ", localidad='" + localidad + '\'' +
                 ", correoElectronico='" + correoElectronico + '\'' +
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
+
+	
 }
