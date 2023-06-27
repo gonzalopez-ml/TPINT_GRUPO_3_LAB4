@@ -83,7 +83,7 @@ public class articuloController {
 
     @RequestMapping("/actualizarArticulo.html")
     @ResponseBody()
-    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, HttpSession session) {
+    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, HttpSession session) {
         //TODO make validations!
         if (session != null) {
             Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
@@ -96,14 +96,7 @@ public class articuloController {
             }
         }
 
-        Articulo articulo = (Articulo) appContext.getBean("articulo");
-
-        articulo.setNombre(nombre);
-        articulo.setDescripcion(descripcion);
-        articulo.setPrecioVenta(precio);
-        articulo.setId(Id);
-
-        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio);
+        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra);
 
         ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
@@ -130,8 +123,19 @@ public class articuloController {
         //TODO make validations!
         Articulo articulo = articuloServicio.obtenerArticulo(idArticuloAActualizar);
 
+        //marcas
+        ArrayList<Marca> marcas = articuloServicio.obtenerMarcas();
+
+        //tipos de articulo
+        ArrayList<TipoArticulo> tipoArticulos = articuloServicio.obtenerTipoArticulo();
+
+        Stock stock = articuloServicio.obtenerStock(idArticuloAActualizar);
+
         ModelAndView MV = new ModelAndView();
+        MV.addObject("marcas", marcas);
+        MV.addObject("tipoArticulos", tipoArticulos);
         MV.addObject("articulo", articulo);
+        MV.addObject("stock", stock);
         MV.setViewName("modificarArticulo");
         return MV;
     }

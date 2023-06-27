@@ -1,5 +1,8 @@
 <%@ page import="frgp.utn.edu.ar.entidad.Articulo" %>
-<%@ page import="java.util.ArrayList" %><%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Marca" %>
+<%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Stock" %><%--
   Created by IntelliJ IDEA.
   User: gonlopez
   Date: 16/06/2023
@@ -9,6 +12,10 @@
 <% String estadoString = "Activo"; %>
 <% Articulo articulos = (Articulo) request.getAttribute("articulo"); %>
 <% Boolean estado = ((Articulo) request.getAttribute("articulo")).getEstado(); %>
+<% ArrayList<Marca> marcas = (ArrayList<Marca>) request.getAttribute("marcas"); %>
+<% ArrayList<TipoArticulo> tipoArticulos = (ArrayList<TipoArticulo>) request.getAttribute("tipoArticulos"); %>
+<% Stock stock = (Stock) request.getAttribute("stock"); %>
+
 <% if (!estado) {
     estadoString = "Inactivo";
 } %>
@@ -33,8 +40,28 @@
     <label for="descripcion">Descripción:</label>
     <input type="text" id="descripcion" name="descripcion" value="<%= articulos.getDescripcion() %>"><br>
 
+<%--    <label for="marca">Marca:</label>
+    <select name="marca" id="marca">
+        <c:forEach var="opcion" items="<%= marcas %>">
+            <option value="${opcion.id}">${opcion.marca}</option>
+        </c:forEach>
+    </select> <br>
+
+    <label for="tipo">Tipo de articulo:</label>
+    <select name="tipo" id="tipo">
+        <c:forEach var="opcion" items="<%= tipoArticulos %>">
+            <option value="${opcion.id}">${opcion.nombreTipo}</option>
+        </c:forEach>
+    </select> <br>--%>
+
     <label for="precio">Precio de Venta:</label>
     <input type="number" id="precio" name="precio" value="<%= articulos.getPrecioVenta() %>"><br>
+
+    <label for="cantidad">cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" value="<%= stock.getCantidad() %>"><br>
+
+    <label for="precioCompra">precio de compra:</label>
+    <input type="number" id="precioCompra" name="precioCompra" value="<%= stock.getPrecioCompra() %>"><br>
 
     <label >Estado del articulo:  <%= estadoString %> </label> <br>
 
