@@ -1,6 +1,5 @@
 package frgp.utn.edu.ar.servicioImpl;
 
-import frgp.utn.edu.ar.dao.IMarcaDao;
 import frgp.utn.edu.ar.entidad.Marca;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
