@@ -33,8 +33,8 @@ public class ArticuloServicio implements IArticuloServicio {
     }
 
     @Override
-    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra) {
-        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra);
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca, Long tipo) {
+        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra, marca, tipo);
     }
 
     @Override

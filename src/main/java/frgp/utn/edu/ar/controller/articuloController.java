@@ -83,7 +83,8 @@ public class articuloController {
 
     @RequestMapping("/actualizarArticulo.html")
     @ResponseBody()
-    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, HttpSession session) {
+    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca,
+                                           Long tipo, HttpSession session) {
         //TODO make validations!
         if (session != null) {
             Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
@@ -96,7 +97,7 @@ public class articuloController {
             }
         }
 
-        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra);
+        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra, marca, tipo);
 
         ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!

@@ -14,7 +14,7 @@ public interface IArticuloServicio {
 
     String actualizarArticulo(Articulo articulo);
 
-    String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra);
+    String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca, Long tipo);
 
     Articulo obtenerArticulo(Long articuloId);
 
