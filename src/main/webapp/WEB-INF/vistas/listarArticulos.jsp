@@ -24,9 +24,17 @@
 <% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
 
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+
+<div style="text-align: center;">
 <form action="logout.html" method="post">
     <button type="submit">Desloguear</button>
 </form>
+
+<form action="listaUsuariosVendedor.html" method="post">
+    <input type="hidden" name="idUsuario" value="<%= usuario.getId() %>">
+    <button type="submit">Usuarios</button>
+</form>
+</div>
 <table id="tablaArticulos" class="display">
 
 

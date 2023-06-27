@@ -5,6 +5,7 @@ import frgp.utn.edu.ar.dao.ILoginDao;
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -71,6 +72,24 @@ public class LoginDaoImpl implements ILoginDao {
             String hql = "FROM Usuario u where u.estado = true";
 
             ArrayList<Usuario> arr = (ArrayList<Usuario>) session.createQuery(hql).list();
+            session.close();
+            return arr;
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public ArrayList<Usuario> obtenerUsuariosPorTipo() {
+        try {
+            ConfigHibernate ch = new ConfigHibernate();
+            Session session= ch.abrirConexion();
+
+            String hql = "FROM Usuario u where u.estado = true AND u.TipoUsuario <> :tipo";
+            Query query = session.createQuery(hql);
+            query.setParameter("tipo", TipoUsuarioEnum.admin);
+
+            ArrayList<Usuario> arr = (ArrayList<Usuario>) query.list();
             session.close();
             return arr;
         } catch (Exception e) {

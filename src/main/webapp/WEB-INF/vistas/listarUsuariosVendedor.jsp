@@ -28,14 +28,14 @@
 <% } %>
 
 
-<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.admin)  { %>
+<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
 
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
 <form action="logout.html" method="post" style="text-align: right">
     <button type="submit">Desloguear</button>
 </form>
 
-<table id="tablaUsuarios" class="display" style="text-align: center;">
+<table id="tablaUsuarios" class="display" style="text-align: center">
 
     <thead>
         <tr>
@@ -51,15 +51,15 @@
             <td><%= usuario1.getTipoUsuario().toString() %></td>
             <td><%= usuario1.getNombreUsuario() %></td>
 
-            <td> <form action="eliminarUsuario.html" method="get">
+            <td> <form action="eliminarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit">Eliminar</button>
             </form>
             </td>
 
-            <% if (usuario1.getTipoUsuario() == TipoUsuarioEnum.admin) { %>
+            <% if (usuario1.getTipoUsuario() != TipoUsuarioEnum.admin) { %>
 
-            <td> <form action="modificarUsuario.html" method="get">
+            <td> <form action="modificarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit">Modificar</button>
             </form>
@@ -72,9 +72,14 @@
 
 </table>
 
-<form action="agregarUsuario.html" method="post" style="text-align: center">
+<form action="agregarUsuarioVendedor.html" method="post" style="text-align: center">
     <input type="hidden" name="" value="">
     <button type="submit">Agregar usuario</button>
+</form>
+
+<form action="recuperarArticulos.html" method="get" style="text-align: center">
+<input type="hidden" name="volver" >
+<button type="submit">Volver a articulos</button>
 </form>
 
 <% } else { %>

@@ -24,7 +24,7 @@
 </form>
 
 
-<form action="actualizarUsuario.html" method="get" style="text-align: center" onsubmit="return validarPass()">
+<form action="actualizarUsuarioVendedor.html" method="get" style="text-align: center" onsubmit="return validarPass()">
     <input type="number" id="Id" name="Id" value="<%= usuario.getId() %>" hidden><br>
 
     <label for="nombre">Nombre:</label>
@@ -34,13 +34,13 @@
     <input type="text" id="pass" name="pass" value="<%= usuario.getContrasenia() %>" required><br>
 
     <label for="password2">Reeingrese contraseña:</label>
-    <input type="text" id="password2" name="password2"  value="<%= usuario.getContrasenia() %>" required><br>
+    <input type="text" id="password2" name="password2" required><br>
 
     <input type="submit" value="Modificar" name="btnRedirigir">
 
 </form>
 
-<form action="listaUsuarios.html" method="get" style="text-align: center">
+<form action="listaUsuariosVendedor.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
     <button type="submit">Volver</button>
 </form>

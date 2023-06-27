@@ -1,6 +1,7 @@
 package frgp.utn.edu.ar.servicio;
 
 import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 
 import java.util.ArrayList;
 
@@ -17,4 +18,6 @@ public interface ILoginServicio {
     public String modificarUsuario(Long Id, String pass);
 
     Usuario obtenerUsuarioPorId(Long idUsuario);
+
+    ArrayList<Usuario> obtenerUsuariosPorTipo();
 }

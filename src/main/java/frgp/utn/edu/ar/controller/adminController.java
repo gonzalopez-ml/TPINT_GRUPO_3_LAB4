@@ -21,6 +21,11 @@ public class adminController {
 
     ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 
+    @Autowired
+    @Qualifier("loginServicio")
+    private LoginServicio loginServicio;
+
+
     @RequestMapping("agregarUsuario.html")
     public ModelAndView agregarUsuarios(HttpSession session) {
         if (session != null) {
@@ -78,12 +83,6 @@ public class adminController {
         MV.setViewName("listarUsuarios");
         return MV;
     }
-
-
-
-    @Autowired
-    @Qualifier("loginServicio")
-    private LoginServicio loginServicio;
 
     @RequestMapping("eliminarUsuario.html")
     public ModelAndView eliminarUsuario(HttpSession session, Long idUsuario) {

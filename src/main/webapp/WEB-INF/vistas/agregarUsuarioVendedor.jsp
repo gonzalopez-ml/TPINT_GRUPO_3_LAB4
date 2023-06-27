@@ -27,7 +27,7 @@
 
 <h1>Registro de Usuario</h1>
 
-<form action="guardarUsuario.html" method="post" onsubmit="return validarPass()" style="text-align: center;">
+<form action="guardarUsuarioVendedor.html" method="post" style="text-align: center;" onsubmit="return validarPass()">
     <label for="nombre">Nombre Usuario:</label>
     <input type="text" id="nombre" name="nombre" required><br>
 
@@ -39,7 +39,6 @@
 
     <label for="tipo">Tipo de usuario:</label>
     <select name="tipo" id="tipo">
-            <option value="admin">Admin</option>
             <option value="vendedor">Vendedor</option>
             <option value="contador">Contador</option>
     </select> <br>
@@ -47,15 +46,14 @@
     <button type="submit">Guardar</button>
 </form>
 
-<form action="listaUsuarios.html" method="get" style="text-align: center">
+
+<form action="listaUsuariosVendedor.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
     <button type="submit">Volver</button>
 </form>
 
-
 </body>
 </html>
-
 
 <script>
     function validarPass() {
