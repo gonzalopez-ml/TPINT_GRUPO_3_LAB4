@@ -1,6 +1,8 @@
 package frgp.utn.edu.ar.controller;
 
 import frgp.utn.edu.ar.entidad.Cliente;
+import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ClienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 
 import java.text.ParseException;
@@ -30,8 +34,15 @@ public class ClienteController {
     private ClienteServicio clienteServicio;
 
     @RequestMapping("/guardarCliente.html")
-    public ModelAndView guardarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
-
+    public ModelAndView guardarCliente(HttpSession session, Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
       
         Cliente cliente = (Cliente) appContext.getBean("cliente");
         cliente.setId(id);
@@ -51,7 +62,7 @@ public class ClienteController {
         
         ModelAndView MV = new ModelAndView("listarClientes");
         ArrayList<Cliente> clientes= clienteServicio.obtenerClientes();
-        MV.addObject("mensajeGuardado", seGuardo);
+        MV.addObject("mensaje", seGuardo);
         MV.addObject("clientes", clientes);
 
         return MV;
@@ -60,8 +71,15 @@ public class ClienteController {
    
     @RequestMapping("/actualizarCliente.html")
     @ResponseBody()
-    public ModelAndView actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
-        
+    public ModelAndView actualizarCliente(HttpSession session, Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
     	//String fechanacimiento2 = "2023-06-28";
         //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         //java.util.Date utilDate = sdf.parse(fechanacimiento2);
@@ -113,9 +131,17 @@ public class ClienteController {
         return MV;
     }
 
-    @RequestMapping(value="/recuperarClientes.html", method=RequestMethod.GET)
-    @ResponseBody()
-    public ModelAndView recuperarClientes() {
+    @RequestMapping(value="/recuperarClientes.html")
+    public ModelAndView recuperarClientes(HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
+
         ModelAndView MV = new ModelAndView("listarClientes");
         //TODO make validations!
         ArrayList<Cliente> clientes = clienteServicio.obtenerClientes();
@@ -125,7 +151,15 @@ public class ClienteController {
         }
     
     @RequestMapping(value="/eliminarCliente.html", method=RequestMethod.GET)
-    public ModelAndView eliminarCliente(Long idClienteAEliminar) {
+    public ModelAndView eliminarCliente(HttpSession session, Long idClienteAEliminar) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
         //TODO make validations!
         
         // Obtain the client with the given ID
@@ -135,11 +169,12 @@ public class ClienteController {
         cliente.setEstado(0); // Cliente inactivo
         
         // Update the client
-        clienteServicio.actualizarCliente(cliente);
+        String mensaje = clienteServicio.actualizarCliente(cliente);
         
         // Redirect to the list of clients
         ModelAndView MV = new ModelAndView("listarClientes");
         ArrayList<Cliente> clientes = clienteServicio.obtenerClientes();
+        MV.addObject("mensaje", mensaje);
         MV.addObject("clientes", clientes);
 
         return MV;

@@ -1,6 +1,7 @@
 <%@ page import="frgp.utn.edu.ar.entidad.Marca" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %><%--
+<%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: gonlopez
   Date: 15/06/2023
@@ -10,6 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% String mensaje = (String) request.getAttribute("mensaje"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 <html>
 <head>
@@ -17,6 +19,14 @@
 </head>
 
 <body>
+
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
+
 
 
 <% if (mensaje != null) { %>
@@ -43,13 +53,13 @@
             <option value="contador">Contador</option>
     </select> <br>
 
-    <button type="submit">Guardar</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Guardar</button>
 </form>
 
 
 <form action="listaUsuariosVendedor.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
-    <button type="submit">Volver</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
 
 </body>

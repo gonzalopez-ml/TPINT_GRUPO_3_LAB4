@@ -1,5 +1,10 @@
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
+<%@ page import="frgp.utn.edu.ar.enums.TipoUsuarioEnum" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% String mensaje = (String) request.getAttribute("mensaje"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -25,6 +30,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
+
   <style>
     //CSS Styles
   </style>
@@ -33,6 +39,22 @@
 <%
     //Java code can go here.
 %>
+
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
+
+
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
+
+
     <table style="width:100%">
         <tr>
   	  		<td><h1>Lista de Clientes</h1></td>
@@ -40,7 +62,9 @@
   					<div style="text-align:right;">
     					<a href="<c:url value='/guardar_archivo_cliente.html' />" class="btn btn-primary">Agregar Nuevo Cliente</a>
    					</div>
+
    			</td>
+
  		 </tr>
   </table>
   
@@ -78,7 +102,14 @@
 </tr>
 </c:forEach>
 </tbody>
+
+
+
 </table>
+
+<form action="recuperarArticulos.html" method="get" style="text-align: center" >
+    <button class="custom-btn" type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
+</form>
 </body>
 <script>
 $(document).ready(function() {

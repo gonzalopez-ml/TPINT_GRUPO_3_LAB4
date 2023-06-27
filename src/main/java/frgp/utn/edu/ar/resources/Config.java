@@ -2,11 +2,13 @@ package frgp.utn.edu.ar.resources;
 
 
 import frgp.utn.edu.ar.entidad.Articulo;
+import frgp.utn.edu.ar.entidad.Cliente;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.entidad.Usuario;
 import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
+import org.hibernate.cache.spi.entry.CacheEntry;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
@@ -50,6 +52,13 @@ public class Config {
     @Scope("prototype")
     public Usuario usuario() {
         return new Usuario();
+    }
+
+    //Beans Usuario
+    @Bean
+    @Scope("prototype")
+    public Cliente cliente() {
+        return new Cliente();
     }
 
 

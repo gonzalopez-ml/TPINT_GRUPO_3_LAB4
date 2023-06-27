@@ -3,6 +3,8 @@ package frgp.utn.edu.ar.daoImpl;
 import frgp.utn.edu.ar.dao.ConfigHibernate;
 import frgp.utn.edu.ar.dao.IClienteDao;
 import frgp.utn.edu.ar.entidad.Cliente;
+import frgp.utn.edu.ar.entidad.Usuario;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,16 @@ public class ClienteDaoImpl implements IClienteDao {
         try {
             ConfigHibernate ch = new ConfigHibernate();
             Session session= ch.abrirConexion();
+
+            String hql = "FROM Cliente c WHERE c.dni = :dni";
+            Query query = session.createQuery(hql);
+            query.setParameter("dni", cliente.getDni());
+            Cliente clienteDevuelto = (Cliente) query.uniqueResult();
+
+            if (clienteDevuelto != null) {
+                session.close();
+                return "El cliente ya se encuentra en la BD";
+            }
 
             transaction = session.beginTransaction();
             session.save(cliente);

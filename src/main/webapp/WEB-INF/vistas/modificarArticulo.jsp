@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="frgp.utn.edu.ar.entidad.Marca" %>
 <%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %>
-<%@ page import="frgp.utn.edu.ar.entidad.Stock" %><%--
+<%@ page import="frgp.utn.edu.ar.entidad.Stock" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: gonlopez
   Date: 16/06/2023
@@ -15,6 +16,7 @@
 <% ArrayList<Marca> marcas = (ArrayList<Marca>) request.getAttribute("marcas"); %>
 <% ArrayList<TipoArticulo> tipoArticulos = (ArrayList<TipoArticulo>) request.getAttribute("tipoArticulos"); %>
 <% Stock stock = (Stock) request.getAttribute("stock"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 <% if (!estado) {
     estadoString = "Inactivo";
@@ -30,9 +32,13 @@
 
 <body>
 
-<form action="logout.html" method="post">
-    <button type="submit">Desloguear</button>
-</form>
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
+
 
 
 <form action="actualizarArticulo.html" method="get" style="text-align: center;">
@@ -69,13 +75,13 @@
 
     <label >Estado del articulo:  <%= estadoString %> </label> <br>
 
-    <input type="submit" value="Modificar" name="btnRedirigir">
+    <input type="submit" value="Modificar" name="btnRedirigir" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">
 </form>
 
 
 <form action="listaUsuarios.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
-    <button type="submit">Volver</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
 
 

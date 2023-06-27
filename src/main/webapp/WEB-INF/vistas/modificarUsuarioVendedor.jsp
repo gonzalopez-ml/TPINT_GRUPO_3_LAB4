@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <% String estadoString = "Activo"; %>
-<% Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,10 +18,13 @@
 
 <body>
 
-<h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
-<form action="logout.html" method="post">
-    <button type="submit">Desloguear</button>
-</form>
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
+
 
 
 <form action="actualizarUsuarioVendedor.html" method="get" style="text-align: center" onsubmit="return validarPass()">

@@ -1,7 +1,10 @@
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +19,15 @@
 
 </head>
 <body>
+
+
+<div>
+	<h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+	<form action="logout.html" method="post" style="text-align: right">
+		<button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+	</form>
+</div>
+
 	<table style="width:100%">
         <tr>
   	  		<td><h1>Registro de Clientes</h1></td>
@@ -77,7 +89,7 @@
 		</tr>
 		<tr>
      		<td><label for="direccion">Dirección:</label></td>
-     		<td> <input class="form-control" type="text" id="direccion" name="direccion"></td>
+     		<td> <input class="form-control" type="text" id="direccion" name="direccion"</td>
 		</tr>
 		<tr>
      		<td><label for="localidad">Localidad:</label></td>
@@ -124,10 +136,11 @@
     function validarFormulario() {
         var nombre = document.getElementById("nombre").value;
         var apellido = document.getElementById("apellido").value;
+		var direccion = document.getElementById("apellido").value;
 
-        var regex = /^[A-Za-z]+$/; // Expresión regular para validar solo letras
+		var regex = /^[A-Za-z]+$/; // Expresión regular para validar solo letras
 
-        if (!regex.test(nombre) || !regex.test(apellido)) {
+        if (!regex.test(nombre) || !regex.test(apellido)  || !regex.test(direccion)) {
             alert("Hay campos con errores.");
             return false; // Detener el envío del formulario
         }

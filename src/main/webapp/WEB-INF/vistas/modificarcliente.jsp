@@ -1,6 +1,9 @@
 <%@ page import="frgp.utn.edu.ar.entidad.Cliente" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
 <% Cliente cliente = (Cliente) request.getAttribute("cliente"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 <% Integer estado = null; %>
 <% String estadoString = "No definido"; %>
 <% if (cliente != null) { %>
@@ -31,6 +34,12 @@
 
 <body>
 
+<div>
+	<h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+	<form action="logout.html" method="post" style="text-align: right">
+		<button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+	</form>
+</div>
 
 	<table style="width:100%">
         <tr>

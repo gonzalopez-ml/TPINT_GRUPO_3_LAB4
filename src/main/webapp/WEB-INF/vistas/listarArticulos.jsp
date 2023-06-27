@@ -25,14 +25,23 @@
 
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
 
+<div>
 <div style="text-align: center;">
 <form action="logout.html" method="post" style="text-align: right">
-    <button type="submit">Desloguear</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
 </form>
 
-<form action="listaUsuariosVendedor.html" method="post" style="text-align: center">
+    <div style="text-align: center;">
+        <form action="recuperarClientes.html" method="post" style="text-align: left">
+            <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Clientes</button>
+        </form>
+    </div>
+
+
+
+    <form action="listaUsuariosVendedor.html" method="post" style="text-align: center">
     <input type="hidden" name="idUsuario" value="<%= usuario.getId() %>">
-    <button type="submit">Usuarios</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Usuarios</button>
 </form>
 </div>
 <table id="tablaArticulos" class="display" style="text-align: center">
@@ -57,12 +66,12 @@
             <td><%= articulo.getEstado() %></td>
             <td> <form action="articuloParaActualizar.html" method="get">
                 <input type="hidden" name="idArticuloAActualizar" value="<%= articulo.getId() %>">
-                <button type="submit">Modificar</button>
+                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button>
             </form>
             </td>
             <td> <form action="eliminarArticulo.html" method="get">
                 <input type="hidden" name="idArticuloAeliminar" value="<%= articulo.getId() %>">
-                <button type="submit">Eliminar</button>
+                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Eliminar</button>
             </form>
             </td>
         </tr>
@@ -73,8 +82,9 @@
 
 <form action="guardar_archivo.html" method="get" style="text-align: center;">
     <input type="hidden" name="" value="">
-    <button type="submit">Crear articulo</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Crear articulo</button>
 </form>
+
 
 <% } else { %>
 

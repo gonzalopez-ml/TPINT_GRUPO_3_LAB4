@@ -32,7 +32,7 @@
 
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
 <form action="logout.html" method="post" style="text-align: right">
-    <button type="submit">Desloguear</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
 </form>
 
 <table id="tablaUsuarios" class="display" style="text-align: center">
@@ -53,7 +53,7 @@
 
             <td> <form action="eliminarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
-                <button type="submit">Eliminar</button>
+                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Eliminar</button>
             </form>
             </td>
 
@@ -61,7 +61,7 @@
 
             <td> <form action="modificarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
-                <button type="submit">Modificar</button>
+                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button>
             </form>
             </td>
             <% } %>
@@ -74,12 +74,12 @@
 
 <form action="agregarUsuarioVendedor.html" method="post" style="text-align: center">
     <input type="hidden" name="" value="">
-    <button type="submit">Agregar usuario</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Agregar usuario</button>
 </form>
 
 <form action="recuperarArticulos.html" method="get" style="text-align: center">
 <input type="hidden" name="volver" >
-<button type="submit">Volver a articulos</button>
+<button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver a articulos</button>
 </form>
 
 <% } else { %>
