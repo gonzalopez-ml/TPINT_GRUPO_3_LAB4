@@ -2,6 +2,7 @@ package frgp.utn.edu.ar.controller;
 
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
 import frgp.utn.edu.ar.servicioImpl.LoginServicio;
@@ -12,8 +13,12 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import java.util.ArrayList;
@@ -42,9 +47,20 @@ public class loginController {
     public ModelAndView login(String email, String password) {
 
         String error = "";
+        ModelAndView MV = new ModelAndView();
+
+        if (email == null || password == null) {
+            error = "Email incorrecto, por favor colocar @ o .com";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
 
         if (!email.contains("@") && !email.contains(".com")) {
             error = "Email incorrecto, por favor colocar @ o .com";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
         }
 
         Usuario usuario = (Usuario) appContext.getBean("usuario");
@@ -54,11 +70,37 @@ public class loginController {
 
         Usuario usuario1 = loginServicio.obtenerUsuario(usuario);
 
-        ModelAndView MV = new ModelAndView();
+        if (usuario1 != null) {
+            HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
+            HttpSession session = request.getSession();
+            session.setAttribute("usuario", usuario1);
+            session.setAttribute("loggedIn", true);
 
-        if (usuario1.getId() != null) {
+            // TODO enviar al otro usuario a otra vista de reportes.
+            if (usuario1.getTipoUsuario() == TipoUsuarioEnum.admin) {
+                MV.setViewName("listarUsuarios");
+                ArrayList<Usuario> arr = loginServicio.obtenerUsuarios();
+
+                MV.addObject("session", session);
+                MV.addObject("usuarios", arr);
+                return MV;
+            }
+
+            // TODO enviar al otro usuario a otra vista de reportes.
+            if (usuario1.getTipoUsuario() == TipoUsuarioEnum.contador) {
+                MV.setViewName("reportes");
+
+                ArrayList<Usuario> arr = new ArrayList<>();
+
+                MV.addObject("session", session);
+                MV.addObject("usuarios", arr);
+                return MV;
+            }
+
             MV.setViewName("listarArticulos");
             ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
+
+            MV.addObject("session", session);
             MV.addObject("articulos", arr);
             return MV;
         }
@@ -66,6 +108,13 @@ public class loginController {
         error = "El usuario no se encuentra en la base de datos";
 
         MV.addObject("error", error);
+        MV.setViewName("login");
+        return MV;
+    }
+
+    @RequestMapping("errorLogin.html")
+    public ModelAndView errorLogin() {
+        ModelAndView MV = new ModelAndView();
         MV.setViewName("login");
         return MV;
     }

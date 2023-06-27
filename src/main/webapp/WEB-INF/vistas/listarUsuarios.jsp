@@ -5,8 +5,8 @@
 <%@page import="frgp.utn.edu.ar.entidad.Articulo" %>
 <%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
 <%@ page import="frgp.utn.edu.ar.enums.TipoUsuarioEnum" %>
-<% ArrayList<Articulo> articulos = (ArrayList<Articulo>) request.getAttribute("articulos"); %>
-<% String mensaje = (String) request.getAttribute("mensajeGuardado"); %>
+<% ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios"); %>
+<% String mensaje = (String) request.getAttribute("mensaje"); %>
 <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 
@@ -21,35 +21,35 @@
 </head>
 <body>
 
-<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
+
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
+
+
+<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.admin)  { %>
 
 
 <table id="tablaArticulos" class="display">
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
     <thead>
         <tr>
+            <th>Tipo Usuario</th>
             <th>Nombre</th>
-            <th>Descripción</th>
-            <th>Precio de Venta</th>
-            <th>Estado</th>
-            <th>Modificar</th>
+
             <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
-    <% for (Articulo articulo : articulos) { %>
+    <% for (Usuario usuario1 : usuarios) { %>
         <tr>
-            <td><%= articulo.getNombre() %></td>
-            <td><%= articulo.getDescripcion() %></td>
-            <td><%= articulo.getPrecioVenta() %></td>
-            <td><%= articulo.getEstado() %></td>
-            <td> <form action="articuloParaActualizar.html" method="get">
-                <input type="hidden" name="idArticuloAActualizar" value="<%= articulo.getId() %>">
-                <button type="submit">Modificar</button>
-            </form>
-            </td>
-            <td> <form action="eliminarArticulo.html" method="get">
-                <input type="hidden" name="idArticuloAeliminar" value="<%= articulo.getId() %>">
+            <td><%= usuario1.getTipoUsuario().toString() %></td>
+            <td><%= usuario1.getNombreUsuario() %></td>
+
+            <td> <form action="eliminarUsuario.html" method="get">
+                <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit">Eliminar</button>
             </form>
             </td>
@@ -59,9 +59,9 @@
 
 </table>
 
-<form action="guardar_archivo.html" method="get">
+<form action="agregarUsuario.html" method="post">
     <input type="hidden" name="" value="">
-    <button type="submit">Crear articulo</button>
+    <button type="submit">Agregar usuario</button>
 </form>
 
 <% } else { %>
@@ -72,12 +72,6 @@
 <% } %>
 
 </body>
-
-<% if (mensaje != null) { %>
-<script>
-    alert("<%= mensaje %>");
-</script>
-<% } %>
 
 
 <script>
@@ -90,10 +84,6 @@ $(document).ready(function() {
         "info": true,
         "autoWidth": false,
         "columns": [
-            { "searchable": true },
-            { "searchable": true },
-            { "searchable": true },
-            { "searchable": true },
             { "searchable": true },
             { "searchable": true },
         ]

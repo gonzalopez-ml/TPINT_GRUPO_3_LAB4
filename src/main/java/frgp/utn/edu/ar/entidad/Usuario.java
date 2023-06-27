@@ -30,6 +30,21 @@ public class Usuario implements Serializable {
     @Column(name = "TipoUsuario")
     private TipoUsuarioEnum TipoUsuario;
 
+    @Column(name = "estado")
+    private Boolean estado;
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
     //Constructor vacio
     public Usuario()
     {

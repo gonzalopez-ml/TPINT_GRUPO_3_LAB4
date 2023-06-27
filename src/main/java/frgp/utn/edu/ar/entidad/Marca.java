@@ -16,24 +16,21 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
-    private int id;
+    private Long id;
 
     @Column(name="marca")
     private String marca;
-
-    @Column(name="status")
-    private int status;
 
     //Constructor sin parámetros requerido por Hibernate
     public Marca() {
     }
 
     //Getters and Setters
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -45,11 +42,5 @@ public class Marca implements Serializable {
         this.marca = marca;
     }
 
-    public int getStatus() {
-        return status;
-    }
 
-    public void setStatus(int status) {
-        this.status = status;
-    }
 }

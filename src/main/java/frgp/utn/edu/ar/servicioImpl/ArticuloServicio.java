@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.servicioImpl;
 import frgp.utn.edu.ar.dao.IArticuloDao;
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
+import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.servicio.IArticuloServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,8 +33,8 @@ public class ArticuloServicio implements IArticuloServicio {
     }
 
     @Override
-    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
-        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio);
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra) {
+        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra);
     }
 
     @Override
@@ -49,6 +50,11 @@ public class ArticuloServicio implements IArticuloServicio {
     @Override
     public ArrayList<TipoArticulo> obtenerTipoArticulo() {
         return articuloDao.obtenerTipoArticulos();
+    }
+
+    @Override
+    public Stock obtenerStock(Long idArticulo) {
+        return articuloDao.obtenerStock(idArticulo);
     }
 
     @Override

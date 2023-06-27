@@ -6,6 +6,8 @@ import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
+import frgp.utn.edu.ar.entidad.Usuario;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
@@ -42,13 +44,13 @@ public class ArticuloDaoImpl implements IArticuloDao {
 
         session.beginTransaction();
 
-        String hql = "FROM Articulo a";
+        String hql = "FROM Articulo a where a.estado = true";
         ArrayList<Articulo> arr = (ArrayList<Articulo>) session.createQuery(hql).list();
         return (ArrayList<Articulo>) session.createQuery(hql).list();
     }
 
     @Override
-    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra) {
 
         Transaction transaction = null;
         try {
@@ -59,9 +61,14 @@ public class ArticuloDaoImpl implements IArticuloDao {
 
             Articulo articulo = (Articulo) session.get(Articulo.class, Id);
 
+            Stock stock = articulo.getStock();
+            stock.setCantidad(cantidad);
+            stock.setPrecioCompra(precioCompra);
+
             articulo.setNombre(nombre);
             articulo.setDescripcion(descripcion);
             articulo.setPrecioVenta(precio);
+            articulo.setStock(stock);
 
             session.update(articulo);
             transaction.commit();
@@ -115,9 +122,12 @@ public class ArticuloDaoImpl implements IArticuloDao {
 
         session.beginTransaction();
 
-        String hql = "FROM Stock WHERE idArticulo =" + idArticulo;
-
-        return (Stock) session.createQuery(hql);
+        String hql = "FROM Stock WHERE idArticulo = :idArticulo";
+        Query query = session.createQuery(hql);
+        query.setParameter("idArticulo", idArticulo);
+        Stock  stock = (Stock) query.uniqueResult();
+        session.close();
+        return stock;
     }
 
     @Override
