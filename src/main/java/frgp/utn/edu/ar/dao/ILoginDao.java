@@ -14,4 +14,8 @@ public interface ILoginDao {
     Usuario obtenerUsuarioPorUsuario(Usuario usuario);
 
     String eliminarUsuario(Long Id);
+
+    public String modificarUsuario(Long Id, String pass);
+
+    Usuario obtenerUsuarioPorId(Long idUsuario);
 }

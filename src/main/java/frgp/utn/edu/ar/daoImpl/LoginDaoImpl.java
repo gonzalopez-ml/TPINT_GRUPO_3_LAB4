@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.daoImpl;
 import frgp.utn.edu.ar.dao.ConfigHibernate;
 import frgp.utn.edu.ar.dao.ILoginDao;
 import frgp.utn.edu.ar.entidad.Articulo;
+import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.Usuario;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -47,6 +48,20 @@ public class LoginDaoImpl implements ILoginDao {
             return new Usuario();
         }
     }
+
+    public Usuario obtenerUsuarioPorId(Long idUsuario) {
+
+        try {
+            ConfigHibernate ch = new ConfigHibernate();
+            Session session= ch.abrirConexion();
+            Usuario usuario = (Usuario) session.get(Usuario.class, idUsuario);
+            session.close();
+            return usuario;
+        } catch (Exception e) {
+            return new Usuario();
+        }
+    }
+
     @Override
     public ArrayList<Usuario> obtenerUsuarios() {
         try {
@@ -109,4 +124,28 @@ public class LoginDaoImpl implements ILoginDao {
             return "Error al eliminar usuario, intente nuevamente";
         }
     }
+
+    @Override
+    public String modificarUsuario(Long Id, String pass) {
+        Transaction transaction = null;
+        try {
+            ConfigHibernate ch = new ConfigHibernate();
+            Session session= ch.abrirConexion();
+
+            transaction = session.beginTransaction();
+
+            Usuario usuario = (Usuario) session.get(Usuario.class, Id);
+
+            usuario.setContrasenia(pass);
+
+            session.update(usuario);
+            transaction.commit();
+            session.close();
+            return "El Usuario se guardo con exito";
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            return "Error al modificar los datos: Verifique los datos";
+        }    }
 }

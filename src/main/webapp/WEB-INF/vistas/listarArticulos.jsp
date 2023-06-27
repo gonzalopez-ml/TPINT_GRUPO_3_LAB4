@@ -23,9 +23,13 @@
 
 <% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
 
-
-<table id="tablaArticulos" class="display">
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+<form action="logout.html" method="post">
+    <button type="submit">Desloguear</button>
+</form>
+<table id="tablaArticulos" class="display">
+
+
     <thead>
         <tr>
             <th>Nombre</th>
@@ -84,7 +88,8 @@
 $(document).ready(function() {
     $('#tablaArticulos').DataTable({
         "paging": true,
-        "lengthChange": false,
+        "lengthChange": true,
+        "lengthMenu": [10, 25, 50],
         "searching": true,
         "ordering": true,
         "info": true,

@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 
 @Controller
@@ -114,6 +111,17 @@ public class loginController {
 
     @RequestMapping("errorLogin.html")
     public ModelAndView errorLogin() {
+        ModelAndView MV = new ModelAndView();
+        MV.setViewName("login");
+        return MV;
+    }
+
+
+    @RequestMapping(value = "logout.html")
+    public ModelAndView logout(HttpSession session) {
+        // Invalidar la sesión
+        session.invalidate();
+
         ModelAndView MV = new ModelAndView();
         MV.setViewName("login");
         return MV;

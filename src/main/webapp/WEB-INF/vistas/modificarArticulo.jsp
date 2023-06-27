@@ -30,8 +30,12 @@
 
 <body>
 
+<form action="logout.html" method="post">
+    <button type="submit">Desloguear</button>
+</form>
 
-<form action="actualizarArticulo.html" method="get">
+
+<form action="actualizarArticulo.html" method="get" style="text-align: center;">
     <input type="number" id="Id" name="Id" value="<%= articulos.getId() %>" hidden><br>
 
     <label for="nombre">Nombre:</label>
@@ -66,6 +70,12 @@
     <label >Estado del articulo:  <%= estadoString %> </label> <br>
 
     <input type="submit" value="Modificar" name="btnRedirigir">
+</form>
+
+
+<form action="listaUsuarios.html" method="get" style="text-align: center">
+    <input type="hidden" name="volver" >
+    <button type="submit">Volver</button>
 </form>
 
 

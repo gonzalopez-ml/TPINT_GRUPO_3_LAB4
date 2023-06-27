@@ -39,5 +39,17 @@ public class LoginServicio implements ILoginServicio {
     public String eliminarUsuario(Long Id) {
         return loginDao.eliminarUsuario(Id);
     }
+
+    @Override
+    public String modificarUsuario(Long Id, String pass) {
+        return loginDao.modificarUsuario(Id, pass);
+    }
+
+    @Override
+    public Usuario obtenerUsuarioPorId(Long idUsuario) {
+        return loginDao.obtenerUsuarioPorId(idUsuario);
+    }
+
+
 }
 

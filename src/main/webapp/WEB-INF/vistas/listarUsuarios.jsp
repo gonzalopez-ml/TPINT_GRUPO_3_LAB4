@@ -2,7 +2,6 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 
-<%@page import="frgp.utn.edu.ar.entidad.Articulo" %>
 <%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
 <%@ page import="frgp.utn.edu.ar.enums.TipoUsuarioEnum" %>
 <% ArrayList<Usuario> usuarios = (ArrayList<Usuario>) request.getAttribute("usuarios"); %>
@@ -14,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Listado Articulos</title>
+<title>Listado Usuarios</title>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
@@ -31,15 +30,19 @@
 
 <% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.admin)  { %>
 
-
-<table id="tablaArticulos" class="display">
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+<form action="logout.html" method="post">
+    <button type="submit">Desloguear</button>
+</form>
+
+<table id="tablaUsuarios" class="display">
+
     <thead>
         <tr>
             <th>Tipo Usuario</th>
             <th>Nombre</th>
-
             <th>Eliminar</th>
+            <th>Modificar</th>
         </tr>
     </thead>
     <tbody>
@@ -53,6 +56,16 @@
                 <button type="submit">Eliminar</button>
             </form>
             </td>
+
+            <% if (usuario1.getTipoUsuario() == TipoUsuarioEnum.admin) { %>
+
+            <td> <form action="modificarUsuario.html" method="get">
+                <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
+                <button type="submit">Modificar</button>
+            </form>
+            </td>
+            <% } %>
+
         </tr>
         <% } %>
     </tbody>
@@ -73,19 +86,19 @@
 
 </body>
 
-
 <script>
 $(document).ready(function() {
-    $('#tablaArticulos').DataTable({
+    $('#tablaUsuarios').DataTable({
         "paging": true,
-        "lengthChange": false,
+        "lengthChange": true,
+        "lengthMenu": [10, 25, 50],
         "searching": true,
         "ordering": true,
         "info": true,
         "autoWidth": false,
         "columns": [
             { "searchable": true },
-            { "searchable": true },
+            { "searchable": true }
         ]
     });
 });
