@@ -60,11 +60,13 @@ public class ClienteController {
    
     @RequestMapping("/actualizarCliente.html")
     @ResponseBody()
-    public ModelAndView actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, String fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+    public ModelAndView actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
         
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        java.util.Date fechaNacimiento = sdf.parse(fechanacimiento);
-        java.sql.Date fechaNacimiento2 = new java.sql.Date(fechaNacimiento.getTime());
+    	//String fechanacimiento2 = "2023-06-28";
+        //SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        //java.util.Date utilDate = sdf.parse(fechanacimiento2);
+        //java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+       
 
     
     	 
@@ -80,7 +82,7 @@ public class ClienteController {
         cliente.setCorreoElectronico(correoelectronico);
         cliente.setDireccion(direccion);
         cliente.setEstado(estado);
-        cliente.setFechanacimiento(fechanacimiento2);
+        cliente.setFechanacimiento(fechanacimiento);
         cliente.setLocalidad(localidad);
         cliente.setNombre(nombre);
         cliente.setSexo(sexo);
