@@ -1,38 +1,58 @@
 package frgp.utn.edu.ar.servicioImpl;
 
 import frgp.utn.edu.ar.dao.IArticuloDao;
-import frgp.utn.edu.ar.daoImpl.ArticuloDaoImpl;
 import frgp.utn.edu.ar.entidad.Articulo;
+import frgp.utn.edu.ar.entidad.Marca;
+import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.servicio.IArticuloServicio;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service("articuloServicio")
 public class ArticuloServicio implements IArticuloServicio {
 
-    private IArticuloDao iArticuloDao;
-
-    public ArticuloServicio() {
-        iArticuloDao = new ArticuloDaoImpl();
-    }
+    @Autowired
+    private IArticuloDao articuloDao;
 
     @Override
-    public ResponseEntity insertarArticulo(Articulo articulo) {
-        return iArticuloDao.insertarArticulo(articulo);
+    public String insertarArticulo(Articulo articulo) {
+        return articuloDao.insertarArticulo(articulo);
     }
 
     @Override
     public ArrayList<Articulo> obtenerArticulos() {
-        return iArticuloDao.obtenerArticulos();
+        return articuloDao.obtenerArticulos();
     }
 
     @Override
-    public ResponseEntity actualizarArticulo(Articulo articulo) {
-        return iArticuloDao.actualizarArticulo(articulo);
+    public String actualizarArticulo(Articulo articulo) {
+        return null;
+    }
+
+    @Override
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
+        return articuloDao.actualizarArticulo(Id, nombre, descripcion, precio);
     }
 
     @Override
     public Articulo obtenerArticulo(Long articuloId) {
-        return iArticuloDao.obtenerArticulo(articuloId);
+        return articuloDao.obtenerArticulo(articuloId);
+    }
+
+    @Override
+    public ArrayList<Marca> obtenerMarcas() {
+        return articuloDao.obtenerMarcas();
+    }
+
+    @Override
+    public ArrayList<TipoArticulo> obtenerTipoArticulo() {
+        return articuloDao.obtenerTipoArticulos();
+    }
+
+    @Override
+    public String eliminarArticulo(Long id) {
+        return articuloDao.eliminarArticulo(id);
     }
 }

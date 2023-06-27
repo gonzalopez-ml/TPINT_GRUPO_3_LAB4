@@ -1,9 +1,12 @@
 package frgp.utn.edu.ar.entidad;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Component
 @Entity
 @Table(name="Articulo")
 public class Articulo implements Serializable {
@@ -42,6 +45,18 @@ public class Articulo implements Serializable {
     public Articulo()
     {
 
+    }
+
+    public Stock getStock() {
+        return stock;
+    }
+
+    public void setStock(Stock stock) {
+        this.stock = stock;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Boolean getEstado() {

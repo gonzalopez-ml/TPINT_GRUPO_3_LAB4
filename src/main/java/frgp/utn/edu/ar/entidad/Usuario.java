@@ -5,9 +5,11 @@ package frgp.utn.edu.ar.entidad;
 import javax.persistence.*;
 
 import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
+@Component
 @Entity
 @Table(name="Usuario")
 public class Usuario implements Serializable {

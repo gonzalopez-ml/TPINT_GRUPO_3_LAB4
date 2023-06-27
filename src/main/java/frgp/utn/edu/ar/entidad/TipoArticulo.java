@@ -1,9 +1,12 @@
 package frgp.utn.edu.ar.entidad;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Component
 @Entity
 @Table(name="TipoArticulo")
 public class TipoArticulo implements Serializable {

@@ -1,20 +1,20 @@
 package frgp.utn.edu.ar.resources;
 
 
-import frgp.utn.edu.ar.dao.IArticuloDao;
 import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
-import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
+import frgp.utn.edu.ar.entidad.Usuario;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
-@Configuration
 public class Config {
+
 
     //Beans articulos
     @Bean
+    @Scope("prototype")
     public Articulo articulo() {
         Articulo articulo = new Articulo();
         return articulo;
@@ -22,6 +22,7 @@ public class Config {
 
     //Beans stock
     @Bean
+    @Scope("prototype")
     public Stock stock() {
         Stock stock = new Stock();
         return stock;
@@ -29,6 +30,7 @@ public class Config {
 
     //Beans tipo articulo
     @Bean
+    @Scope("prototype")
     public TipoArticulo tipoArticulo() {
         TipoArticulo tipoArticulo = new TipoArticulo();
         return tipoArticulo;
@@ -36,18 +38,17 @@ public class Config {
 
     //Beans marca
     @Bean
+    @Scope("prototype")
     public Marca marca() {
         Marca marca = new Marca();
         return marca;
     }
 
-
-    //Beans servicios
-    //Beans articulo servicio
+    //Beans Usuario
     @Bean
-    public ArticuloServicio articuloServicio() {
-        ArticuloServicio articuloServicio = new ArticuloServicio();
-        return articuloServicio;
+    @Scope("prototype")
+    public Usuario usuario() {
+        return new Usuario();
     }
 
 }

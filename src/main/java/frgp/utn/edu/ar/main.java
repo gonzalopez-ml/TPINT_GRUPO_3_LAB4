@@ -1,7 +1,5 @@
 package frgp.utn.edu.ar;
 
-import frgp.utn.edu.ar.dao.ConfigHibernate;
-import frgp.utn.edu.ar.entidad.Cliente;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

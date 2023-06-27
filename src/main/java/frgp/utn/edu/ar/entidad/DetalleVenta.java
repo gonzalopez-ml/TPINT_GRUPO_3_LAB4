@@ -1,9 +1,12 @@
 package frgp.utn.edu.ar.entidad;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Component
 @Entity
 @Table(name = "DetalleVenta")
 public class DetalleVenta implements Serializable {

@@ -1,9 +1,12 @@
 package frgp.utn.edu.ar.entidad;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Component
 @Entity
 @Table(name = "Stock")
 public class Stock implements Serializable{
@@ -56,6 +59,10 @@ public class Stock implements Serializable{
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public double getPrecioCompra() {
