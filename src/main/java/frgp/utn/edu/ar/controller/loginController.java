@@ -36,7 +36,7 @@ public class loginController {
     @RequestMapping("irLogin.html")
     public ModelAndView evento() {
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 
@@ -49,14 +49,14 @@ public class loginController {
         if (email == null || password == null) {
             error = "Email incorrecto, por favor colocar @ o .com";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 
         if (!email.contains("@") && !email.contains(".com")) {
             error = "Email incorrecto, por favor colocar @ o .com";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 
@@ -105,14 +105,14 @@ public class loginController {
         error = "El usuario no se encuentra en la base de datos";
 
         MV.addObject("error", error);
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 
     @RequestMapping("errorLogin.html")
     public ModelAndView errorLogin() {
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 
@@ -123,7 +123,7 @@ public class loginController {
         session.invalidate();
 
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 }

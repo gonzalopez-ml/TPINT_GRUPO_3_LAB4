@@ -27,11 +27,10 @@ public class vendedorController {
     @RequestMapping("listaUsuariosVendedor.html")
     public ModelAndView listarUsuariosVendedor(HttpSession session) {
         ModelAndView MV = new ModelAndView();
-        String mensaje = "";
         if (session != null) {
             Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
-                mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
+                String mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
                 MV.setViewName("login");
                 return MV;
@@ -39,8 +38,6 @@ public class vendedorController {
         }
 
         ArrayList<Usuario> arr = loginServicio.obtenerUsuariosPorTipo();
-        mensaje = null;
-        MV.addObject("mensaje", mensaje);
         MV.addObject("usuarios", arr);
         MV.setViewName("listarUsuariosVendedor");
         return MV;

@@ -27,7 +27,7 @@
   <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
   <link href="assets/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link id="pagestyle" href="assets/css/argon-dashboard.css?v=2.0.4" rel="stylesheet" />
+    <link id="pagestyle" href="https://demos.creative-tim.com/argon-dashboard/assets-old/css/argon.min.css" rel="stylesheet" />
 </head>
 
 <body class="">
@@ -59,7 +59,7 @@
 
                    <form action="login.html" method="post">
                     <div class="mb-3">
-                      <input type="text" name="email" class="form-control form-control-lg" placeholder="usuario" aria-label="Usuario">
+                      <input type="text" name="email" class="form-control" placeholder="usuario" aria-label="Usuario">
                     </div>
                     <div class="mb-3">
                       <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password">

@@ -14,19 +14,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Listado Usuarios</title>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <link id="pagestyle" href="https://demos.creative-tim.com/argon-dashboard/assets-old/css/argon.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-
-
-<% if (mensaje != null) { %>
-<script>
-    alert("<%= mensaje %>");
-</script>
-<% } %>
-
 
 <% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.admin)  { %>
 
@@ -35,7 +29,7 @@
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
 </form>
 
-<table id="tablaUsuarios" class="display" style="text-align: center;">
+<table id="tabla" class="display" style="text-align: center;">
 
     <thead>
         <tr>
@@ -86,21 +80,30 @@
 
 </body>
 
+<% if (mensaje != null) { %>
 <script>
-$(document).ready(function() {
-    $('#tablaUsuarios').DataTable({
-        "paging": true,
-        "lengthChange": true,
-        "lengthMenu": [10, 25, 50],
-        "searching": true,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false,
-        "columns": [
-            { "searchable": true },
-            { "searchable": true }
-        ]
+    alert("<%= mensaje %>");
+</script>
+<% } %>
+
+
+<script>
+    $(document).ready(function() {
+        $('#tabla').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "lengthMenu": [10, 25, 50],
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false,
+            "columns": [
+                { "searchable": true },
+                { "searchable": true },
+                { "searchable": true },
+                { "searchable": true },
+            ]
+        });
     });
-});
 </script>
 </html>

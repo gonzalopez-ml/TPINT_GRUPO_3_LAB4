@@ -12,6 +12,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link id="pagestyle" href="https://demos.creative-tim.com/argon-dashboard/assets-old/css/argon.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <title>Title</title>
 </head>
 
@@ -39,13 +44,13 @@
     <label for="password2">Reeingrese contraseña:</label>
     <input type="password" id="password2" name="password2" required><br>
 
-    <input type="submit" value="Modificar" name="btnRedirigir">
+    <input type="submit" value="Modificar" name="btnRedirigir" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">
 
 </form>
 
 <form action="listaUsuariosVendedor.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
-    <button type="submit">Volver</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
 
 
