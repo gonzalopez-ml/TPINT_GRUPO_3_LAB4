@@ -26,16 +26,16 @@
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
 
 <div style="text-align: center;">
-<form action="logout.html" method="post">
+<form action="logout.html" method="post" style="text-align: right">
     <button type="submit">Desloguear</button>
 </form>
 
-<form action="listaUsuariosVendedor.html" method="post">
+<form action="listaUsuariosVendedor.html" method="post" style="text-align: center">
     <input type="hidden" name="idUsuario" value="<%= usuario.getId() %>">
     <button type="submit">Usuarios</button>
 </form>
 </div>
-<table id="tablaArticulos" class="display">
+<table id="tablaArticulos" class="display" style="text-align: center">
 
 
     <thead>
@@ -50,7 +50,7 @@
     </thead>
     <tbody>
     <% for (Articulo articulo : articulos) { %>
-        <tr>
+        <tr style="text-align: center">
             <td><%= articulo.getNombre() %></td>
             <td><%= articulo.getDescripcion() %></td>
             <td><%= articulo.getPrecioVenta() %></td>
@@ -71,7 +71,7 @@
 
 </table>
 
-<form action="guardar_archivo.html" method="get">
+<form action="guardar_archivo.html" method="get" style="text-align: center;">
     <input type="hidden" name="" value="">
     <button type="submit">Crear articulo</button>
 </form>

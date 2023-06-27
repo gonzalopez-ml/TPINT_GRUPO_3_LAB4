@@ -32,10 +32,10 @@
     <input type="text" id="nombre" name="nombre" required><br>
 
     <label for="password">Contraseña:</label>
-    <input type="text" id="password" name="password" required><br>
+    <input type="password" id="password" name="password" required><br>
 
     <label for="password2">Reeingrese contraseña:</label>
-    <input type="text" id="password2" name="password2" required><br>
+    <input type="password" id="password2" name="password2" required><br>
 
     <label for="tipo">Tipo de usuario:</label>
     <select name="tipo" id="tipo">

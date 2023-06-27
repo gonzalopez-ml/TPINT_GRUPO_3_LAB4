@@ -31,10 +31,10 @@
     <input type="text" id="nombre" name="nombre" value="<%= usuario.getNombreUsuario() %>" readonly><br>
 
     <label for="pass">contraseña:</label>
-    <input type="text" id="pass" name="pass" value="<%= usuario.getContrasenia() %>" required><br>
+    <input type="password" id="pass" name="pass" value="<%= usuario.getContrasenia() %>" required><br>
 
     <label for="password2">Reeingrese contraseña:</label>
-    <input type="text" id="password2" name="password2" required><br>
+    <input type="password" id="password2" name="password2" required><br>
 
     <input type="submit" value="Modificar" name="btnRedirigir">
 

@@ -62,7 +62,7 @@
                       <input type="text" name="email" class="form-control form-control-lg" placeholder="usuario" aria-label="Usuario">
                     </div>
                     <div class="mb-3">
-                      <input type="text" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
+                      <input type="password" name="password" class="form-control form-control-lg" placeholder="Password" aria-label="Password">
                     </div>
                    
                     <div class="text-center">
