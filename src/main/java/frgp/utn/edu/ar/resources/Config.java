@@ -6,6 +6,7 @@ import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
 import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 
@@ -50,5 +51,6 @@ public class Config {
     public Usuario usuario() {
         return new Usuario();
     }
+
 
 }

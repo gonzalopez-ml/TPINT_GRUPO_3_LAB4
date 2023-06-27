@@ -3,8 +3,12 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%@page import="frgp.utn.edu.ar.entidad.Articulo" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %>
+<%@ page import="frgp.utn.edu.ar.enums.TipoUsuarioEnum" %>
 <% ArrayList<Articulo> articulos = (ArrayList<Articulo>) request.getAttribute("articulos"); %>
 <% String mensaje = (String) request.getAttribute("mensajeGuardado"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,8 +20,12 @@
 <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
-<table id="tablaArticulos" class="display">
 
+<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
+
+
+<table id="tablaArticulos" class="display">
+<h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
     <thead>
         <tr>
             <th>Nombre</th>
@@ -55,6 +63,14 @@
     <input type="hidden" name="" value="">
     <button type="submit">Crear articulo</button>
 </form>
+
+<% } else { %>
+
+<h1>Ocurrio un error inesperado</h1>
+<a href="irLogin.html">Volver al Login</a>
+
+<% } %>
+
 </body>
 
 <% if (mensaje != null) { %>
@@ -69,10 +85,18 @@ $(document).ready(function() {
     $('#tablaArticulos').DataTable({
         "paging": true,
         "lengthChange": false,
-        "searching": false,
+        "searching": true,
         "ordering": true,
         "info": true,
-        "autoWidth": false
+        "autoWidth": false,
+        "columns": [
+            { "searchable": true },
+            { "searchable": true },
+            { "searchable": true },
+            { "searchable": true },
+            { "searchable": true },
+            { "searchable": true },
+        ]
     });
 });
 </script>

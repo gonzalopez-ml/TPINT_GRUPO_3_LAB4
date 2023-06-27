@@ -42,7 +42,7 @@ public class ArticuloDaoImpl implements IArticuloDao {
 
         session.beginTransaction();
 
-        String hql = "FROM Articulo a";
+        String hql = "FROM Articulo a where a.estado = true";
         ArrayList<Articulo> arr = (ArrayList<Articulo>) session.createQuery(hql).list();
         return (ArrayList<Articulo>) session.createQuery(hql).list();
     }

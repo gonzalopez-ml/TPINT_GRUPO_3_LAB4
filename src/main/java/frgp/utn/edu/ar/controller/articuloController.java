@@ -5,6 +5,8 @@ import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.Marca;
 import frgp.utn.edu.ar.entidad.Stock;
 import frgp.utn.edu.ar.entidad.TipoArticulo;
+import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import frgp.utn.edu.ar.resources.Config;
 import frgp.utn.edu.ar.servicioImpl.ArticuloServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -31,7 +34,17 @@ public class articuloController {
 
     @RequestMapping("/guardarArticulo.html")
     public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
-                                        Integer cantidad, Double precioCompra) {
+                                        Integer cantidad, Double precioCompra, HttpSession session) {
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+                ModelAndView MV = new ModelAndView();
+                String error = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("error", error);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
 
 
         Articulo articulo = (Articulo) appContext.getBean("articulo");
@@ -70,8 +83,18 @@ public class articuloController {
 
     @RequestMapping("/actualizarArticulo.html")
     @ResponseBody()
-    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio) {
+    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, HttpSession session) {
         //TODO make validations!
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+                ModelAndView MV = new ModelAndView();
+                String error = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("error", error);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
 
         Articulo articulo = (Articulo) appContext.getBean("articulo");
 
@@ -92,7 +115,17 @@ public class articuloController {
     }
 
     @RequestMapping("/articuloParaActualizar.html")
-    public ModelAndView articuloParaActualizar(Long idArticuloAActualizar) {
+    public ModelAndView articuloParaActualizar(Long idArticuloAActualizar, HttpSession session) {
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+                ModelAndView MV = new ModelAndView();
+                String error = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("error", error);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
 
         //TODO make validations!
         Articulo articulo = articuloServicio.obtenerArticulo(idArticuloAActualizar);
@@ -105,7 +138,16 @@ public class articuloController {
 
     @RequestMapping(value ="/recuperarArticulos.html", method = RequestMethod.GET)
     @ResponseBody()
-    public ModelAndView recuperarArticulos() {
+    public ModelAndView recuperarArticulos(HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
+
     	ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!
         ArrayList<Articulo> arr = articuloServicio.obtenerArticulos();
@@ -121,7 +163,15 @@ public class articuloController {
 
     @RequestMapping(value ="/eliminarArticulo.html", method = RequestMethod.GET)
     @ResponseBody()
-    public ModelAndView eliminarArticulo(Long idArticuloAeliminar) {
+    public ModelAndView eliminarArticulo(Long idArticuloAeliminar, HttpSession session) {
+        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }
 
         String seGuardo = articuloServicio.eliminarArticulo(idArticuloAeliminar);
 
@@ -137,7 +187,18 @@ public class articuloController {
 
 
     @RequestMapping("/guardar_archivo.html")
-    public ModelAndView evento() {
+    public ModelAndView evento(HttpSession session) {
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+                ModelAndView MV = new ModelAndView();
+                String error = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("error", error);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
+
         ModelAndView MV = new ModelAndView();
 
         //marcas
