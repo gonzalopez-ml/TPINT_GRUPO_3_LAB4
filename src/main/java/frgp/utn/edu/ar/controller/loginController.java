@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -19,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import java.util.ArrayList;
 
 @Controller
@@ -39,7 +36,7 @@ public class loginController {
     @RequestMapping("irLogin.html")
     public ModelAndView evento() {
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 
@@ -52,14 +49,14 @@ public class loginController {
         if (email == null || password == null) {
             error = "Email incorrecto, por favor colocar @ o .com";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 
         if (!email.contains("@") && !email.contains(".com")) {
             error = "Email incorrecto, por favor colocar @ o .com";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 
@@ -108,14 +105,25 @@ public class loginController {
         error = "El usuario no se encuentra en la base de datos";
 
         MV.addObject("error", error);
-        MV.setViewName("login");
+        MV.setViewName("login2");
         return MV;
     }
 
     @RequestMapping("errorLogin.html")
     public ModelAndView errorLogin() {
         ModelAndView MV = new ModelAndView();
-        MV.setViewName("login");
+        MV.setViewName("login2");
+        return MV;
+    }
+
+
+    @RequestMapping(value = "logout.html")
+    public ModelAndView logout(HttpSession session) {
+        // Invalidar la sesión
+        session.invalidate();
+
+        ModelAndView MV = new ModelAndView();
+        MV.setViewName("login2");
         return MV;
     }
 }

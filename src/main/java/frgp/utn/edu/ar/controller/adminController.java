@@ -21,6 +21,11 @@ public class adminController {
 
     ApplicationContext appContext = new AnnotationConfigApplicationContext(Config.class);
 
+    @Autowired
+    @Qualifier("loginServicio")
+    private LoginServicio loginServicio;
+
+
     @RequestMapping("agregarUsuario.html")
     public ModelAndView agregarUsuarios(HttpSession session) {
         if (session != null) {
@@ -79,12 +84,6 @@ public class adminController {
         return MV;
     }
 
-
-
-    @Autowired
-    @Qualifier("loginServicio")
-    private LoginServicio loginServicio;
-
     @RequestMapping("eliminarUsuario.html")
     public ModelAndView eliminarUsuario(HttpSession session, Long idUsuario) {
         ModelAndView MV = new ModelAndView();
@@ -104,6 +103,83 @@ public class adminController {
 
         ArrayList<Usuario> arr = loginServicio.obtenerUsuarios();
 
+        MV.addObject("mensaje", mensaje);
+        MV.addObject("usuarios", arr);
+        MV.setViewName("listarUsuarios");
+        return MV;
+    }
+
+    @RequestMapping("modificarUsuario.html")
+    public ModelAndView modificarUsuario(HttpSession session, Long idUsuario) {
+        ModelAndView MV = new ModelAndView();
+        String mensaje = "";
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
+                mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("mensaje", mensaje);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
+
+        Usuario usuario = loginServicio.obtenerUsuarioPorId(idUsuario);
+
+        if (usuario != null) {
+            MV.addObject("usuario", usuario);
+            MV.setViewName("modificarUsuario");
+            return MV;
+        }
+
+        mensaje = "No se pudo encontrar Usuario";
+        ArrayList<Usuario> arr = loginServicio.obtenerUsuarios();
+
+        MV.addObject("mensaje", mensaje);
+        MV.addObject("usuarios", arr);
+        MV.setViewName("listarUsuarios");
+        return MV;
+    }
+
+    @RequestMapping("actualizarUsuario.html")
+    public ModelAndView actualizarUsuario(HttpSession session, Long Id, String pass) {
+        ModelAndView MV = new ModelAndView();
+        String mensaje = "";
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
+                mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("mensaje", mensaje);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
+
+        mensaje = loginServicio.modificarUsuario(Id, pass);
+
+        ArrayList<Usuario> arr = loginServicio.obtenerUsuarios();
+
+        MV.addObject("mensaje", mensaje);
+        MV.addObject("usuarios", arr);
+        MV.setViewName("listarUsuarios");
+        return MV;
+    }
+
+    @RequestMapping("listaUsuarios.html")
+    public ModelAndView listarUsuarios(HttpSession session, Long Id, String pass) {
+        ModelAndView MV = new ModelAndView();
+        String mensaje = "";
+        if (session != null) {
+            Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+            if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
+                mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
+                MV.addObject("mensaje", mensaje);
+                MV.setViewName("login");
+                return MV;
+            }
+        }
+
+        ArrayList<Usuario> arr = loginServicio.obtenerUsuarios();
+        mensaje = null;
         MV.addObject("mensaje", mensaje);
         MV.addObject("usuarios", arr);
         MV.setViewName("listarUsuarios");

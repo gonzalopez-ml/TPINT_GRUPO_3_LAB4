@@ -2,6 +2,7 @@ package frgp.utn.edu.ar.servicioImpl;
 
 import frgp.utn.edu.ar.dao.ILoginDao;
 import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import frgp.utn.edu.ar.servicio.ILoginServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,5 +40,22 @@ public class LoginServicio implements ILoginServicio {
     public String eliminarUsuario(Long Id) {
         return loginDao.eliminarUsuario(Id);
     }
+
+    @Override
+    public String modificarUsuario(Long Id, String pass) {
+        return loginDao.modificarUsuario(Id, pass);
+    }
+
+    @Override
+    public Usuario obtenerUsuarioPorId(Long idUsuario) {
+        return loginDao.obtenerUsuarioPorId(idUsuario);
+    }
+
+    @Override
+    public ArrayList<Usuario> obtenerUsuariosPorTipo() {
+        return loginDao.obtenerUsuariosPorTipo();
+    }
+
+
 }
 

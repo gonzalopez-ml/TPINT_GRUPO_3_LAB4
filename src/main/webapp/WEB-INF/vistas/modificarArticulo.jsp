@@ -1,8 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="frgp.utn.edu.ar.entidad.Articulo" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="frgp.utn.edu.ar.entidad.Marca" %>
 <%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %>
-<%@ page import="frgp.utn.edu.ar.entidad.Stock" %><%--
+<%@ page import="frgp.utn.edu.ar.entidad.Stock" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: gonlopez
   Date: 16/06/2023
@@ -15,6 +17,7 @@
 <% ArrayList<Marca> marcas = (ArrayList<Marca>) request.getAttribute("marcas"); %>
 <% ArrayList<TipoArticulo> tipoArticulos = (ArrayList<TipoArticulo>) request.getAttribute("tipoArticulos"); %>
 <% Stock stock = (Stock) request.getAttribute("stock"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 <% if (!estado) {
     estadoString = "Inactivo";
@@ -24,14 +27,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link id="pagestyle" href="https://demos.creative-tim.com/argon-dashboard/assets-old/css/argon.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <title>Title</title>
 </head>
 
 
 <body>
 
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
 
-<form action="actualizarArticulo.html" method="get">
+
+
+<form action="actualizarArticulo.html" method="get" style="text-align: center;">
     <input type="number" id="Id" name="Id" value="<%= articulos.getId() %>" hidden><br>
 
     <label for="nombre">Nombre:</label>
@@ -40,7 +56,7 @@
     <label for="descripcion">Descripción:</label>
     <input type="text" id="descripcion" name="descripcion" value="<%= articulos.getDescripcion() %>"><br>
 
-<%--    <label for="marca">Marca:</label>
+    <label for="marca">Marca:</label>
     <select name="marca" id="marca">
         <c:forEach var="opcion" items="<%= marcas %>">
             <option value="${opcion.id}">${opcion.marca}</option>
@@ -52,7 +68,8 @@
         <c:forEach var="opcion" items="<%= tipoArticulos %>">
             <option value="${opcion.id}">${opcion.nombreTipo}</option>
         </c:forEach>
-    </select> <br>--%>
+    </select> <br>
+
 
     <label for="precio">Precio de Venta:</label>
     <input type="number" id="precio" name="precio" value="<%= articulos.getPrecioVenta() %>"><br>
@@ -65,7 +82,13 @@
 
     <label >Estado del articulo:  <%= estadoString %> </label> <br>
 
-    <input type="submit" value="Modificar" name="btnRedirigir">
+    <input type="submit" value="Modificar" name="btnRedirigir" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">
+</form>
+
+
+<form action="listaUsuarios.html" method="get" style="text-align: center">
+    <input type="hidden" name="volver" >
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
 
 

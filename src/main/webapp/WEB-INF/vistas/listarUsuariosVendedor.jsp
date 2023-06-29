@@ -22,14 +22,16 @@
 </head>
 <body>
 
-<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.admin)  { %>
+
+
+<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %>
 
 <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
 <form action="logout.html" method="post" style="text-align: right">
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
 </form>
 
-<table id="tabla" class="display" style="text-align: center;">
+<table id="tablaUsuariosVendedor" class="display" style="text-align: center">
 
     <thead>
         <tr>
@@ -45,15 +47,15 @@
             <td><%= usuario1.getTipoUsuario().toString() %></td>
             <td><%= usuario1.getNombreUsuario() %></td>
 
-            <td> <form action="eliminarUsuario.html" method="get">
+            <td> <form action="eliminarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Eliminar</button>
             </form>
             </td>
 
-            <% if (usuario1.getTipoUsuario() == TipoUsuarioEnum.admin) { %>
+            <% if (usuario1.getTipoUsuario() != TipoUsuarioEnum.admin) { %>
 
-            <td> <form action="modificarUsuario.html" method="get">
+            <td> <form action="modificarUsuarioVendedor.html" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button>
             </form>
@@ -66,9 +68,14 @@
 
 </table>
 
-<form action="agregarUsuario.html" method="post" style="text-align: center">
+<form action="agregarUsuarioVendedor.html" method="post" style="text-align: center">
     <input type="hidden" name="" value="">
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Agregar usuario</button>
+</form>
+
+<form action="recuperarArticulos.html" method="get" style="text-align: center">
+<input type="hidden" name="volver" >
+<button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver a articulos</button>
 </form>
 
 <% } else { %>
@@ -77,6 +84,7 @@
 <a href="irLogin.html">Volver al Login</a>
 
 <% } %>
+
 
 </body>
 
@@ -89,9 +97,8 @@
 
 <script>
     $(document).ready(function() {
-        $('#tabla').DataTable({
+        $('#tablaUsuariosVendedor').DataTable({
             "paging": true,
-            "lengthChange": true,
             "lengthMenu": [10, 25, 50],
             "searching": true,
             "ordering": true,
@@ -99,11 +106,11 @@
             "autoWidth": false,
             "columns": [
                 { "searchable": true },
-                { "searchable": true },
-                { "searchable": true },
-                { "searchable": true },
+                { "searchable": true }
             ]
         });
     });
 </script>
+
+
 </html>

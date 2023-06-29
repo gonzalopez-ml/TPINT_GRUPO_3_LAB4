@@ -25,13 +25,6 @@
 
 <body>
 
-
-<% if (mensaje != null) { %>
-<script>
-    alert("<%= mensaje %>");
-</script>
-<% } %>
-
 <div>
     <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
     <form action="logout.html" method="post" style="text-align: right">
@@ -41,9 +34,15 @@
 
 
 
-<form action="guardarUsuario.html" method="post" onsubmit="return validarPass()" style="text-align: center;">
-    <h1>Registro de Usuario</h1>
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
 
+<h1>Registro de Usuario</h1>
+
+<form action="guardarUsuarioVendedor.html" method="post" style="text-align: center;" onsubmit="return validarPass()">
     <label for="nombre">Nombre Usuario:</label>
     <input type="text" id="nombre" name="nombre" required><br>
 
@@ -55,7 +54,6 @@
 
     <label for="tipo">Tipo de usuario:</label>
     <select name="tipo" id="tipo">
-            <option value="admin">Admin</option>
             <option value="vendedor">Vendedor</option>
             <option value="contador">Contador</option>
     </select> <br>
@@ -63,15 +61,14 @@
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Guardar</button>
 </form>
 
-<form action="listaUsuarios.html" method="get" style="text-align: center">
+
+<form action="listaUsuariosVendedor.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
 
-
 </body>
 </html>
-
 
 <script>
     function validarPass() {

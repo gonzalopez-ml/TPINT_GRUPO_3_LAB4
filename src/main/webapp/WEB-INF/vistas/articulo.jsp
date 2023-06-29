@@ -1,6 +1,7 @@
 <%@ page import="frgp.utn.edu.ar.entidad.Marca" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %><%--
+<%@ page import="frgp.utn.edu.ar.entidad.TipoArticulo" %>
+<%@ page import="frgp.utn.edu.ar.entidad.Usuario" %><%--
   Created by IntelliJ IDEA.
   User: gonlopez
   Date: 15/06/2023
@@ -11,13 +12,27 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% ArrayList<Marca> marcas = (ArrayList<Marca>) request.getAttribute("marcas"); %>
 <% ArrayList<TipoArticulo> tipoArticulos = (ArrayList<TipoArticulo>) request.getAttribute("tipoArticulos"); %>
+<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
 
 <html>
 <head>
+    <link id="pagestyle" href="https://demos.creative-tim.com/argon-dashboard/assets-old/css/argon.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
     <title>Articulo</title>
 </head>
 
 <body>
+
+<div>
+    <h1 style="text-align: center">Bienvenido usuario <%= usuario.getTipoUsuario() %> </h1>
+    <form action="logout.html" method="post" style="text-align: right">
+        <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Desloguear</button>
+    </form>
+</div>
+
 
 <h1>Registro de Artículos</h1>
 
@@ -51,7 +66,7 @@
     <label for="precioCompra">precio de compra:</label>
     <input type="number" id="precioCompra" name="precioCompra" required><br>
 
-    <button type="submit">Guardar</button>
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Guardar</button>
 </form>
 
 </body>

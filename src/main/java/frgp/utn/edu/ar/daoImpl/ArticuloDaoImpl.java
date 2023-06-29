@@ -50,7 +50,7 @@ public class ArticuloDaoImpl implements IArticuloDao {
     }
 
     @Override
-    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra) {
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca, Long tipo) {
 
         Transaction transaction = null;
         try {
@@ -60,6 +60,11 @@ public class ArticuloDaoImpl implements IArticuloDao {
             transaction = session.beginTransaction();
 
             Articulo articulo = (Articulo) session.get(Articulo.class, Id);
+            Marca nuevaMarca = (Marca) session.get(Marca.class, marca);
+            TipoArticulo tipoArticulo = (TipoArticulo) session.get(TipoArticulo.class, tipo);
+
+            tipoArticulo.setId(tipo);
+            nuevaMarca.setId(marca);
 
             Stock stock = articulo.getStock();
             stock.setCantidad(cantidad);
@@ -69,8 +74,10 @@ public class ArticuloDaoImpl implements IArticuloDao {
             articulo.setDescripcion(descripcion);
             articulo.setPrecioVenta(precio);
             articulo.setStock(stock);
+            articulo.setTipoArticulo(tipoArticulo);
+            articulo.setMarca(nuevaMarca);
 
-            session.update(articulo);
+            session.saveOrUpdate(articulo);
             transaction.commit();
             session.close();
             return "El articulo se guardo con exito";
