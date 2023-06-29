@@ -4,7 +4,9 @@ import org.springframework.stereotype.Component;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Entity
@@ -29,6 +31,11 @@ public class Venta implements Serializable {
     @Column(name = "MontoTotal")
     private double montoTotal;
 
+    @Column(name = "EstadoVenta")
+    private boolean estadoVenta;
+
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private List<DetalleVenta> detalles;
 
     public Venta() {
 
@@ -62,6 +69,22 @@ public class Venta implements Serializable {
         this.montoTotal = montoTotal;
     }
 
+    public boolean getEstadoVenta() {
+        return estadoVenta;
+    }
+
+    public void setEstadoVenta(boolean estadoVenta) {
+        this.estadoVenta = estadoVenta;
+    }
+
+    public List<DetalleVenta> getDetalles() {
+        return detalles;
+    }
+
+    public void setDetalles(List<DetalleVenta> detalles) {
+        this.detalles = detalles;
+    }
+
     @Override
     public String toString() {
         return "Venta{" +
@@ -69,6 +92,7 @@ public class Venta implements Serializable {
                 ", fechaVenta=" + fechaVenta +
                 ", idCliente=" + idCliente +
                 ", montoTotal=" + montoTotal +
+                ", estadoVenta=" + estadoVenta +
                 '}';
     }
 }

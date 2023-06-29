@@ -53,7 +53,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% for (DetalleVenta detalle : venta.getDetalles()) { %>
+                <% for (DetalleVenta detalle : venta.get()) { %>
                 <tr>
                     <td><%= detalle.getIdArticulo().getNombre() %>
                     </td>

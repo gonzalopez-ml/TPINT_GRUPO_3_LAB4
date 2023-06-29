@@ -19,12 +19,12 @@ public class DetalleVenta implements Serializable {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "IdVenta")
-    private Venta IdVenta;
-
-    @ManyToOne
     @JoinColumn(name = "IdArticulo")
     private Articulo IdArticulo;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "IdVenta")
+    private Venta venta;
 
     @Column(name = "PrecioVenta")
     private double precioVenta;
@@ -42,14 +42,6 @@ public class DetalleVenta implements Serializable {
 
     public Long getId() {
         return id;
-    }
-
-    public Venta getIdVenta() {
-        return IdVenta;
-    }
-
-    public void setIdVenta(Venta idVenta) {
-        IdVenta = idVenta;
     }
 
     public Articulo getIdArticulo() {
@@ -82,5 +74,25 @@ public class DetalleVenta implements Serializable {
 
     public void setImporte(double importe) {
         this.importe = importe;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
+    }
+
+    @Override
+    public String toString() {
+        return "DetalleVenta{" +
+                "id=" + id +
+                ", IdArticulo=" + IdArticulo +
+                ", venta=" + venta +
+                ", precioVenta=" + precioVenta +
+                ", cantidad=" + cantidad +
+                ", importe=" + importe +
+                '}';
     }
 }

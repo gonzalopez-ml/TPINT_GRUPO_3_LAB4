@@ -1,11 +1,7 @@
 package frgp.utn.edu.ar.resources;
 
 
-import frgp.utn.edu.ar.entidad.Articulo;
-import frgp.utn.edu.ar.entidad.Marca;
-import frgp.utn.edu.ar.entidad.Stock;
-import frgp.utn.edu.ar.entidad.TipoArticulo;
-import frgp.utn.edu.ar.entidad.Usuario;
+import frgp.utn.edu.ar.entidad.*;
 import frgp.utn.edu.ar.enums.TipoUsuarioEnum;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
@@ -53,4 +49,25 @@ public class Config {
     }
 
 
+    //Beans Venta
+    @Bean
+    @Scope("prototype")
+    public Venta venta() {
+        return new Venta();
+    }
+
+    //Beans DetalleVenta
+    @Bean
+    @Scope("prototype")
+    public DetalleVenta detalleVenta() {
+        return new DetalleVenta();
+    }
+
+
+    //Beans cliente
+    @Bean
+    @Scope("prototype")
+    public Cliente cliente() {
+        return new Cliente();
+    }
 }
