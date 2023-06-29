@@ -1,0 +1,51 @@
+package frgp.utn.edu.ar.servicioImpl;
+
+import frgp.utn.edu.ar.dao.IVentaDao;
+import frgp.utn.edu.ar.entidad.DetalleVenta;
+import frgp.utn.edu.ar.entidad.Venta;
+import frgp.utn.edu.ar.servicio.IVentaServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+@Service("ventaServicio")
+public class VentaServicio implements IVentaServicio {
+
+    @Autowired
+    private IVentaDao ventaDAO;
+    @Override
+    public String insertarVenta(Venta venta) {
+        ventaDAO.insertarVenta(venta);
+        return "La venta se ha insertado correctamente.";
+    }
+
+    @Override
+    public ArrayList<Venta> obtenerVentas() {
+        return ventaDAO.obtenerVentas();
+    }
+
+    @Override
+    public Venta obtenerVenta(Long idventa){return ventaDAO.obtenerVenta(idventa);}
+
+    @Override
+    public ArrayList<DetalleVenta> obtenerDetallesVenta(Long ventaId) {
+        return ventaDAO.obtenerDetallesVenta(ventaId);
+    }
+
+    @Override
+    public String eliminarVenta(Long id) {
+        Venta venta = ventaDAO.obtenerVenta(id);
+        if (venta != null) {
+            ventaDAO.eliminarVenta(id);
+            return "La venta se ha eliminado correctamente.";
+        } else {
+            return "No se encontró la venta con el ID proporcionado.";
+        }
+    }
+
+    @Override
+    public void insertarDetalleVenta(DetalleVenta dventa) {
+        ventaDAO.insertarDetalleVenta(dventa);
+    }
+}
