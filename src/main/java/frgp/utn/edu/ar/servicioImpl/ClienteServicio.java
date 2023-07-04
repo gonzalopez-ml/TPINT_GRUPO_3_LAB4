@@ -6,6 +6,7 @@ import frgp.utn.edu.ar.servicio.IClienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -29,27 +30,34 @@ public class ClienteServicio implements IClienteServicio {
     public String actualizarCliente(Cliente cliente) {
         
     	    	
-    	return clienteDao.actualizarCliente(
-            cliente.getId(),
-            cliente.getDni(),
-            cliente.getApellido(),
-            cliente.getCorreoElectronico(),
-            cliente.getDireccion(),
-            cliente.getEstado(),
-            cliente.getFechanacimiento(),
-            cliente.getLocalidad(),
-            cliente.getNombre(),
-            cliente.getSexo(),
-            cliente.getTelefono()
-        );
+    	 Date currentDate = cliente.getFechanacimiento();
+         String pattern = "yyyy-MM-dd HH:mm:ss";
+
+         SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+         String dateString = dateFormat.format(currentDate);
+         System.out.println("Formatted Date: " + dateString);
+     	
+     	return clienteDao.actualizarCliente(
+             cliente.getId(),
+             cliente.getDni(),
+             cliente.getApellido(),
+             cliente.getCorreoElectronico(),
+             cliente.getDireccion(),
+             cliente.getEstado(),
+             dateString,
+             cliente.getLocalidad(),
+             cliente.getNombre(),
+             cliente.getSexo(),
+             cliente.getTelefono()
+         );
     }
 
     @Override
-    public String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+    public String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, String fechanacimiento2, String localidad, String nombre, char sexo, String telefono) {
        
     	
 
-    return clienteDao.actualizarCliente(id, dni, apellido, correoelectronico,direccion,estado,fechanacimiento,localidad, nombre, sexo, telefono);
+    return clienteDao.actualizarCliente(id, dni, apellido, correoelectronico,direccion,estado,fechanacimiento2,localidad, nombre, sexo, telefono);
     }
 
     @Override
