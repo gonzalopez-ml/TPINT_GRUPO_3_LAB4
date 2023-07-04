@@ -71,7 +71,7 @@ public class ClienteController {
    
     @RequestMapping("/actualizarCliente.html")
     @ResponseBody()
-    public ModelAndView actualizarCliente(HttpSession session, Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+    public ModelAndView actualizarCliente(HttpSession session, Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, String fechanacimiento2, String localidad, String nombre, char sexo, String telefono) throws ParseException {
         Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
         if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
             ModelAndView MV = new ModelAndView();
@@ -85,7 +85,8 @@ public class ClienteController {
         //java.util.Date utilDate = sdf.parse(fechanacimiento2);
         //java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
        
-
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date fechanacimiento = sdf.parse(fechanacimiento2+" 00:00:00");
     
     	 
     	// SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
