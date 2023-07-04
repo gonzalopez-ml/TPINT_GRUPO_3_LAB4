@@ -53,7 +53,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <% for (DetalleVenta detalle : venta.get()) { %>
+                <% for (DetalleVenta detalle : venta.getDetalles()) { %>
                 <tr>
                     <td><%= detalle.getIdArticulo().getNombre() %>
                     </td>
@@ -72,6 +72,11 @@
     <% } %>
     </tbody>
 </table>
+
+<form action="cargarRegistroVenta.html" method="get" style="text-align: center;">
+    <input type="hidden" name="" value="">
+    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Cargar Venta</button>
+</form>
 <%--        <% } else { %>
 
     <h1>Ocurrio un error inesperado</h1>

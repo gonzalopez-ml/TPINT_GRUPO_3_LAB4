@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service("ventaServicio")
 public class VentaServicio implements IVentaServicio {
@@ -17,6 +18,10 @@ public class VentaServicio implements IVentaServicio {
     @Override
     public String insertarVenta(Venta venta) {
         ventaDAO.insertarVenta(venta);
+        for (DetalleVenta detalle : venta.getDetalles()) {
+            detalle.setVenta(venta);
+            ventaDAO.insertarDetalleVenta(detalle);
+        }
         return "La venta se ha insertado correctamente.";
     }
 
@@ -29,7 +34,7 @@ public class VentaServicio implements IVentaServicio {
     public Venta obtenerVenta(Long idventa){return ventaDAO.obtenerVenta(idventa);}
 
     @Override
-    public ArrayList<DetalleVenta> obtenerDetallesVenta(Long ventaId) {
+    public List<DetalleVenta> obtenerDetallesVenta(Long ventaId) {
         return ventaDAO.obtenerDetallesVenta(ventaId);
     }
 

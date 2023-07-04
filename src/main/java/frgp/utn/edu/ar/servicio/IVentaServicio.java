@@ -4,6 +4,7 @@ import frgp.utn.edu.ar.entidad.DetalleVenta;
 import frgp.utn.edu.ar.entidad.Venta;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IVentaServicio {
 
@@ -17,5 +18,5 @@ public interface IVentaServicio {
 
     Venta obtenerVenta(Long idventa);
 
-    ArrayList<DetalleVenta> obtenerDetallesVenta(Long ventaId);
+    List<DetalleVenta> obtenerDetallesVenta(Long ventaId);
 }

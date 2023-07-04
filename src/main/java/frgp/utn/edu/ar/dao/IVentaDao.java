@@ -3,6 +3,7 @@ package frgp.utn.edu.ar.dao;
 import frgp.utn.edu.ar.entidad.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public interface IVentaDao {
     String insertarVenta(Venta venta);
@@ -15,5 +16,5 @@ public interface IVentaDao {
 
     Venta obtenerVenta(Long ventaId);
 
-    ArrayList<DetalleVenta> obtenerDetallesVenta(Long id);
+    List<DetalleVenta> obtenerDetallesVenta(Long id);
 }

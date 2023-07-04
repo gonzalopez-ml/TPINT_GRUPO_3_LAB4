@@ -17,6 +17,8 @@ public class ArticuloServicio implements IArticuloServicio {
     @Autowired
     private IArticuloDao articuloDao;
 
+    public ArticuloServicio(){}
+
     @Override
     public String insertarArticulo(Articulo articulo) {
         return articuloDao.insertarArticulo(articulo);
