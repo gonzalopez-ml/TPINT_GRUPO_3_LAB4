@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+	<script src= "https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 </head>
 <body>
 
@@ -36,6 +37,49 @@
 
 <form action="/" method="get" style="text-align: center;">
     <input type="hidden" name="" value="">
+	
+	 <div class="form-group m-1">
+             
+            <!-- Input field along with 
+                calendar icon and -->
+            <div class="input-group date">
+                <!-- Sets the calendar icon -->
+                <span class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fa fa-calendar" 
+                            onclick="setDatepicker(this)">
+                        </i>
+                    </span>
+                </span>
+  
+                <!-- Accepts the input from calendar -->
+              <input class="form-control" type="text" name="fechadesde" id="fechadesde">
+            </div>
+        </div>
+		
+		
+		
+		 <div class="form-group m-1">
+             
+            <!-- Input field along with 
+                calendar icon and -->
+            <div class="input-group date">
+                <!-- Sets the calendar icon -->
+                <span class="input-group-prepend">
+                    <span class="input-group-text">
+                        <i class="fa fa-calendar" 
+                            onclick="setDatepicker(this)">
+                        </i>
+                    </span>
+                </span>
+  
+                <!-- Accepts the input from calendar -->
+              <input class="form-control" type="text" name="fechahasta" id="fechahasta">
+            </div>
+        </div>
+	
+	
+	
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Buscar</button>
 </form>
 
@@ -73,4 +117,30 @@
         });
     });
 </script>
+
+<script type="text/javascript">
+        function setDatepicker(_this) {
+  
+            /* Get the parent class name so we 
+                can show date picker */
+            let className = $(_this).parent()
+                .parent().parent().attr('class');
+  
+            // Remove space and add '.'
+            let removeSpace = className.replace(' ', '.');
+  
+            // jQuery class selector
+            $("." + removeSpace).datepicker({
+                format: "yyyy-mm-dd",
+  
+                // Positioning where the calendar is placed
+                orientation: "bottom auto",
+                // Calendar closes when cursor is 
+                // clicked outside the calendar
+                autoclose: true,
+                showOnFocus: "false"
+            });
+        }
+    </script>
+
 </html>
