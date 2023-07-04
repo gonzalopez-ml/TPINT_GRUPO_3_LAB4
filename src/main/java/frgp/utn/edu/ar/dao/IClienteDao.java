@@ -11,7 +11,7 @@ public interface IClienteDao {
 
     ArrayList<Cliente> obtenerClientes();
 
-    String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono);
+    String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, String fechanacimiento2, String localidad, String nombre, char sexo, String telefono);
 
     Cliente obtenerCliente(Long id);
 
