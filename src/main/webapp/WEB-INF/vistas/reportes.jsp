@@ -35,53 +35,41 @@
 
 
 
-<form action="/" method="get" style="text-align: center;">
-    <input type="hidden" name="" value="">
-	
-	 <div class="form-group m-1">
-             
-            <!-- Input field along with 
-                calendar icon and -->
-            <div class="input-group date">
-                <!-- Sets the calendar icon -->
-                <span class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fa fa-calendar" 
-                            onclick="setDatepicker(this)">
-                        </i>
-                    </span>
-                </span>
-  
-                <!-- Accepts the input from calendar -->
-              <input class="form-control" type="text" name="fechadesde" id="fechadesde">
-            </div>
-        </div>
-		
-		
-		
-		 <div class="form-group m-1">
-             
-            <!-- Input field along with 
-                calendar icon and -->
-            <div class="input-group date">
-                <!-- Sets the calendar icon -->
-                <span class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fa fa-calendar" 
-                            onclick="setDatepicker(this)">
-                        </i>
-                    </span>
-                </span>
-  
-                <!-- Accepts the input from calendar -->
-              <input class="form-control" type="text" name="fechahasta" id="fechahasta">
-            </div>
-        </div>
-	
-	
-	
-    <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Buscar</button>
-</form>
+<table style="width:100%">
+    <tr>
+        <td>
+            <form action="/" method="get" style="text-align: center;">
+                <input type="hidden" name="" value="">
+                <div class="form-group m-1">
+                    <div class="input-group date">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar" onclick="setDatepicker(this)"></i>
+                            </span>
+                        </span>
+                        <input class="form-control" type="text" name="fechadesde" id="fechadesde">
+                    </div>
+                </div>
+            </td>
+           <td>
+                <div class="form-group m-1">
+                    <div class="input-group date">
+                        <span class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="fa fa-calendar" onclick="setDatepicker(this)"></i>
+                            </span>
+                        </span>
+                        <input class="form-control" type="text" name="fechahasta" id="fechahasta">
+                    </div>
+                </div>
+                  </td>
+           <td> 
+                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Buscar</button>
+            </form>
+        </td>
+    </tr>
+</table>
+
 
 
 <% } else { %>
