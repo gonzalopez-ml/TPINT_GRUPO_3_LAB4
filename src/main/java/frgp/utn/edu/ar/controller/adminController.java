@@ -126,7 +126,7 @@ public class adminController {
         Usuario usuario = loginServicio.obtenerUsuarioPorId(idUsuario);
 
         if (usuario != null) {
-            MV.addObject("usuario", usuario);
+            MV.addObject("usuarioModificar", usuario);
             MV.setViewName("modificarUsuario");
             return MV;
         }

@@ -47,7 +47,7 @@
 
 
 
-<form action="actualizarArticulo.html" method="get" style="text-align: center;">
+<form action="actualizarArticulo.html" method="get" style="text-align: center;" onsubmit="return validarFormulario()">
     <input type="number" id="Id" name="Id" value="<%= articulos.getId() %>" hidden><br>
 
     <label for="nombre">Nombre:</label>
@@ -86,7 +86,7 @@
 </form>
 
 
-<form action="listaUsuarios.html" method="get" style="text-align: center">
+<form action="recuperarArticulos.html" method="get" style="text-align: center">
     <input type="hidden" name="volver" >
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Volver</button>
 </form>
@@ -105,5 +105,38 @@
         } else {
             mensaje.style.display = "none";
         }
+    }
+
+    function validarFormulario() {
+        var nombre = document.getElementById("nombre").value;
+        var descripcion = document.getElementById("descripcion").value;
+
+        var precio = document.getElementById("precio").value;
+        var cantidad = document.getElementById("cantidad").value;
+        var precioCompra = document.getElementById("precioCompra").value;
+
+        var regex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras
+
+        if (!regex.test(nombre) || !regex.test(descripcion)) {
+            alert("Hay campos con errores.");
+            return false; // Detener el envío del formulario
+        }
+
+        if (isNaN(precio) || precio <= 0) {
+            alert("El precio debe ser un valor positivo.");
+            return false; // Detener el envío del formulario
+        }
+
+        if (isNaN(cantidad) || cantidad <= 0) {
+            alert("La cantidad debe ser mayor a 0.");
+            return false; // Detener el envío del formulario
+        }
+
+        if (isNaN(precioCompra) || precioCompra <= 0) {
+            alert("El precio de compra debe ser positivo.");
+            return false; // Detener el envío del formulario
+        }
+
+        return true; // Enviar el formulario si pasa la validación
     }
 </script>

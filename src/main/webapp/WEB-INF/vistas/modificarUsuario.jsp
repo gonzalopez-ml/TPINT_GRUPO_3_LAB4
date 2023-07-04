@@ -7,6 +7,7 @@
 --%>
 <% String estadoString = "Activo"; %>
 <% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+<% Usuario usuarioModificar = (Usuario) request.getAttribute("usuarioModificar"); %>
 
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -33,16 +34,16 @@
 
 
 <form action="actualizarUsuario.html" method="get" style="text-align: center" onsubmit="return validarPass()">
-    <input type="number" id="Id" name="Id" value="<%= usuario.getId() %>" hidden><br>
+    <input type="number" id="Id" name="Id" value="<%= usuarioModificar.getId() %>" hidden><br>
 
     <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" value="<%= usuario.getNombreUsuario() %>" readonly><br>
+    <input type="text" id="nombre" name="nombre" value="<%= usuarioModificar.getNombreUsuario() %>" readonly><br>
 
     <label for="pass">contraseña:</label>
-    <input type="password" id="pass" name="pass" value="<%= usuario.getContrasenia() %>" required><br>
+    <input type="password" id="pass" name="pass" value="<%= usuarioModificar.getContrasenia() %>" required><br>
 
     <label for="password2">Reeingrese contraseña:</label>
-    <input type="password" id="password2" name="password2"  value="<%= usuario.getContrasenia() %>" required><br>
+    <input type="password" id="password2" name="password2"  value="<%= usuarioModificar.getContrasenia() %>" required><br>
 
     <input type="submit" value="Modificar" name="btnRedirigir" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">
 

@@ -56,6 +56,7 @@
             <th>Descripción</th>
             <th>Precio de Venta</th>
             <th>Estado</th>
+            <th>Marca</th>
             <th>Modificar</th>
             <th>Eliminar</th>
         </tr>
@@ -66,13 +67,14 @@
             <td><%= articulo.getNombre() %></td>
             <td><%= articulo.getDescripcion() %></td>
             <td><%= articulo.getPrecioVenta() %></td>
-            <td><%= articulo.getEstado() %></td>
+            <td>Activo</td>
+            <td><%= articulo.getMarca().getMarca() %></td>
             <td> <form action="articuloParaActualizar.html" method="get">
                 <input type="hidden" name="idArticuloAActualizar" value="<%= articulo.getId() %>">
                 <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button>
             </form>
             </td>
-            <td> <form action="eliminarArticulo.html" method="get">
+            <td> <form action="eliminarArticulo.html" onclick="return confirm('¿Estás seguro de continuar, se eliminará el artículo?')" method="get">
                 <input type="hidden" name="idArticuloAeliminar" value="<%= articulo.getId() %>">
                 <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Eliminar</button>
             </form>
@@ -116,6 +118,7 @@
             "info": true,
             "autoWidth": false,
             "columns": [
+                {"searchable": true},
                 {"searchable": true},
                 {"searchable": true},
                 {"searchable": true},

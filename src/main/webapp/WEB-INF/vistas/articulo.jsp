@@ -34,9 +34,9 @@
 </div>
 
 
-<h1>Registro de Artículos</h1>
 
-<form action="guardarArticulo.html" method="get" onsubmit="return validarFormulario()">
+<form action="guardarArticulo.html" method="get" onsubmit="return validarFormulario()" style="text-align: center">
+    <h1>Registro de Artículos</h1>
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" pattern="[A-Za-z]+" title="Ingrese solo letras" required><br>
 
@@ -81,7 +81,7 @@
         var cantidad = document.getElementById("cantidad").value;
         var precioCompra = document.getElementById("precioCompra").value;
 
-        var regex = /^[A-Za-z]+$/; // Expresión regular para validar solo letras
+        var regex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras
 
         if (!regex.test(nombre) || !regex.test(descripcion)) {
             alert("Hay campos con errores.");

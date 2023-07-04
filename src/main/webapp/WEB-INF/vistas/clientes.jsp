@@ -48,11 +48,11 @@
 		</tr>
 		<tr>
      		<td><label for="nombre">Nombre:</label></td>
-     		<td> <input class="form-control" type="text" id="nombre" name="nombre" pattern="[A-Za-z]+" title="Ingrese solo letras" required></td>
+     		<td> <input class="form-control" type="text" id="nombre" name="nombre" pattern="[A-Za-z\s]*" title="Ingrese solo letras" required></td>
 		</tr>
 		<tr>
      		<td> <label for="apellido">Apellido:</label></td>
-     		<td><input class="form-control" type="text" id="apellido" name="apellido" pattern="[A-Za-z]+" title="Ingrese solo letras" required></td>
+     		<td><input class="form-control" type="text" id="apellido" name="apellido" pattern="[A-Za-z\s]*" title="Ingrese solo letras" required></td>
 		</tr>
 		<tr>
      		<td><label for="sexo">Sexo:</label></td>
@@ -138,7 +138,7 @@
         var apellido = document.getElementById("apellido").value;
 		var direccion = document.getElementById("apellido").value;
 
-		var regex = /^[A-Za-z]+$/; // Expresión regular para validar solo letras
+		var regex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras
 
         if (!regex.test(nombre) || !regex.test(apellido)  || !regex.test(direccion)) {
             alert("Hay campos con errores.");

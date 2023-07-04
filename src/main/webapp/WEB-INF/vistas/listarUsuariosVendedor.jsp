@@ -47,20 +47,25 @@
             <td><%= usuario1.getTipoUsuario().toString() %></td>
             <td><%= usuario1.getNombreUsuario() %></td>
 
-            <td> <form action="eliminarUsuarioVendedor.html" method="get">
+            <td> <form action="eliminarUsuarioVendedor.html" onclick="return confirm('¿Estás seguro de continuar, se eliminará el usuario?')" method="get">
                 <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
                 <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Eliminar</button>
             </form>
             </td>
 
+            <td>
+
             <% if (usuario1.getTipoUsuario() != TipoUsuarioEnum.admin) { %>
 
-            <td> <form action="modificarUsuarioVendedor.html" method="get">
-                <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
-                <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Modificar</button>
-            </form>
-            </td>
+                <form action="modificarUsuarioVendedor.html" method="get">
+                    <input type="hidden" name="idUsuario" value="<%= usuario1.getId() %>">
+                    <button type="submit"
+                            style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">
+                        Modificar
+                    </button>
+                </form>
             <% } %>
+            </td>
 
         </tr>
         <% } %>
