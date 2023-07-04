@@ -40,7 +40,7 @@ public class ClienteController {
             ModelAndView MV = new ModelAndView();
             String error = "No posee permisos para ver esta página, loguearse nuevamente";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
       
@@ -77,7 +77,7 @@ public class ClienteController {
             ModelAndView MV = new ModelAndView();
             String error = "No posee permisos para ver esta página, loguearse nuevamente";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
     	//String fechanacimiento2 = "2023-06-28";
@@ -139,7 +139,7 @@ public class ClienteController {
             ModelAndView MV = new ModelAndView();
             String error = "No posee permisos para ver esta página, loguearse nuevamente";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 
@@ -158,7 +158,7 @@ public class ClienteController {
             ModelAndView MV = new ModelAndView();
             String error = "No posee permisos para ver esta página, loguearse nuevamente";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
         //TODO make validations!

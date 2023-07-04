@@ -118,7 +118,7 @@ public class adminController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -149,7 +149,7 @@ public class adminController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -173,7 +173,7 @@ public class adminController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.admin) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }

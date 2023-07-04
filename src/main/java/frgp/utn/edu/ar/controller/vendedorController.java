@@ -32,7 +32,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 String mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -52,7 +52,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -77,7 +77,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -108,7 +108,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -146,7 +146,7 @@ public class vendedorController {
                 ModelAndView MV = new ModelAndView();
                 String error = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("error", error);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -165,7 +165,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -196,7 +196,7 @@ public class vendedorController {
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
                 mensaje = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("mensaje", mensaje);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }

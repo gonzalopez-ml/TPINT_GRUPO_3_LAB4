@@ -41,7 +41,7 @@ public class articuloController {
                 ModelAndView MV = new ModelAndView();
                 String error = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("error", error);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -92,7 +92,7 @@ public class articuloController {
                 ModelAndView MV = new ModelAndView();
                 String error = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("error", error);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -116,7 +116,7 @@ public class articuloController {
                 ModelAndView MV = new ModelAndView();
                 String error = "No posee permisos para ver esta página, loguearse nuevamente";
                 MV.addObject("error", error);
-                MV.setViewName("login");
+                MV.setViewName("login2");
                 return MV;
             }
         }
@@ -149,7 +149,7 @@ public class articuloController {
             ModelAndView MV = new ModelAndView();
             String error = "No posee permisos para ver esta página, loguearse nuevamente";
             MV.addObject("error", error);
-            MV.setViewName("login");
+            MV.setViewName("login2");
             return MV;
         }
 

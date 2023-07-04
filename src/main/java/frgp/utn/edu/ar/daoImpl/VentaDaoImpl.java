@@ -3,10 +3,13 @@ package frgp.utn.edu.ar.daoImpl;
 import frgp.utn.edu.ar.dao.ConfigHibernate;
 import frgp.utn.edu.ar.dao.IVentaDao;
 import frgp.utn.edu.ar.entidad.*;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.stereotype.Repository;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 @Repository
@@ -42,6 +45,24 @@ public class VentaDaoImpl implements IVentaDao {
         String hql = "FROM Venta v";
         ArrayList<Venta> arr = (ArrayList<Venta>) session.createQuery(hql).list();
         return (ArrayList<Venta>) session.createQuery(hql).list();
+    }
+
+    @Override
+    public ArrayList<Venta> obtenerVentasPorFecha(String fecha1, String fecha2) throws ParseException {
+        ConfigHibernate ch = new ConfigHibernate();
+        Session session= ch.abrirConexion();
+
+        session.beginTransaction();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        fecha1 = String.valueOf(dateFormat.parse(fecha1));
+        fecha2 = String.valueOf(dateFormat.parse(fecha2));
+
+        String hql = "FROM Venta WHERE fechaVenta BETWEEN :fechaDesde AND :fechaHasta";
+        Query query = session.createQuery(hql);
+        query.setParameter("fechaDesde", fecha1);
+        query.setParameter("fechaHasta", fecha2);
+
+        return (ArrayList<Venta>) query.list();
     }
 
     @Override

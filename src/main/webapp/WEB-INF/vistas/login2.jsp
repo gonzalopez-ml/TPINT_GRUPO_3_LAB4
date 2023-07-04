@@ -3,6 +3,7 @@
 <html lang="es">
 
 <head>
+    <% String mensaje = (String) request.getAttribute("error"); %>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -97,5 +98,12 @@
 <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
 <script src="assets/js/argon-dashboard.min.js?v=2.0.4"></script>
 </body>
+
+
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
 
 </html>

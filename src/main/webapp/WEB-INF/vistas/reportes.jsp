@@ -40,7 +40,7 @@
 <table style="width:100%">
     <tr>
         <td>
-            <form action="/" method="get" style="text-align: center;">
+            <form action="recuperarReporte.html" method="get" style="text-align: center;">
                 <input type="hidden" name="" value="">
                 <div class="form-group m-1">
                     <div class="input-group date">

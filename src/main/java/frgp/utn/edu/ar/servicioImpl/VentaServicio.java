@@ -7,6 +7,7 @@ import frgp.utn.edu.ar.servicio.IVentaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,11 @@ public class VentaServicio implements IVentaServicio {
     @Override
     public ArrayList<Venta> obtenerVentas() {
         return ventaDAO.obtenerVentas();
+    }
+
+    @Override
+    public ArrayList<Venta> obtenerVentasPorFecha(String fecha1, String fecha2) throws ParseException {
+        return ventaDAO.obtenerVentasPorFecha(fecha1, fecha2);
     }
 
     @Override
