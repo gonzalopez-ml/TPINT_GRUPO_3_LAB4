@@ -62,7 +62,7 @@ public class ClienteDaoImpl implements IClienteDao {
     }
 
     @Override
-    public String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, Date fechanacimiento, String localidad, String nombre, char sexo, String telefono) {
+    public String actualizarCliente(Long id, String dni, String apellido, String correoelectronico, String direccion, int estado, String fechanacimiento2, String localidad, String nombre, char sexo, String telefono) {
         
     	
     	Transaction transaction = null;
@@ -75,7 +75,9 @@ public class ClienteDaoImpl implements IClienteDao {
             
             Cliente cliente = (Cliente) session.get(Cliente.class, id);
           
-            fechanacimiento=null;
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date fechanacimiento = sdf.parse(fechanacimiento2);
+            
           
             cliente.setId(id);
             cliente.setDni(dni);
