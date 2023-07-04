@@ -109,6 +109,15 @@ public class VentaController {
 
     @RequestMapping(value ="/listarVentas.html")
     public ModelAndView listarVentas(HttpSession session) {
+/*        Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
+        if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
+            ModelAndView MV = new ModelAndView();
+            String error = "No posee permisos para ver esta página, loguearse nuevamente";
+            MV.addObject("error", error);
+            MV.setViewName("login");
+            return MV;
+        }*/
+
         ModelAndView MV = new ModelAndView("listarVentas");
         //TODO make validations!
         ArrayList<Venta> arr = ventaServicio.obtenerVentas();
@@ -118,7 +127,7 @@ public class VentaController {
         }
 
         MV.addObject("ventas", arr);
-
+        //MV.addObject("mensajeGuardado", seGuardo);
         return MV;
     }
 
