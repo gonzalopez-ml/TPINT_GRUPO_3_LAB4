@@ -17,7 +17,12 @@
     <% } %>
 <% } %>
 
-
+<% 
+String pattern = "yyyy-MM-dd";
+SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+String dateString = dateFormat.format(cliente.getFechanacimiento());
+%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -100,7 +105,7 @@
                 </span>
   
                 <!-- Accepts the input from calendar -->
-                <input class="form-control" type="date"  name="fechaNacimiento" id="fechaNacimiento" value="<%= cliente.getFechanacimiento() %>" required>
+              <input class="form-control" type="text" name="fechanacimiento2" id="fechanacimiento2" value="<%= dateString %>">
             </div>
         </div>
    
