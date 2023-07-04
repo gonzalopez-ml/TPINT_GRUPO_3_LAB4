@@ -89,7 +89,7 @@
 		</tr>
 		<tr>
      		<td><label for="direccion">Dirección:</label></td>
-     		<td> <input class="form-control" type="text" id="direccion" name="direccion"</td>
+     		<td> <input class="form-control" type="text" id="direccion" name="direccion"></td>
 		</tr>
 		<tr>
      		<td><label for="localidad">Localidad:</label></td>
