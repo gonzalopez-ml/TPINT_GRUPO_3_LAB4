@@ -173,7 +173,7 @@ public class vendedorController {
         Usuario usuario = loginServicio.obtenerUsuarioPorId(idUsuario);
 
         if (usuario != null) {
-            MV.addObject("usuario", usuario);
+            MV.addObject("usuarioModificar", usuario);
             MV.setViewName("modificarUsuarioVendedor");
             return MV;
         }

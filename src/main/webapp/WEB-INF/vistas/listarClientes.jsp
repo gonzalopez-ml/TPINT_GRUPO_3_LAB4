@@ -97,7 +97,7 @@
         <td><c:out value="${cliente.telefono}" /></td>
         <td> 
          <a href="<c:url value='/clienteParaActualizar.html?idClienteAActualizar=${cliente.id}' />" class="card-link btn btn-primary">Modificar</a>
-         <a href="<c:url value='/eliminarCliente.html?idClienteAEliminar=${cliente.id}' />" class="card-link  btn btn-primary">Eliminar</a>
+         <a href="<c:url value='/eliminarCliente.html?idClienteAEliminar=${cliente.id}' />" class="card-link  btn btn-primary" onclick="return confirm('¿Estás seguro de eliminar este cliente?')">Eliminar</a>
        </td>
 </tr>
 </c:forEach>
