@@ -2,9 +2,15 @@ package frgp.utn.edu.ar.entidad;
 
 
 import org.springframework.stereotype.Component;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+
 
 @Component
 @Entity
@@ -35,7 +41,12 @@ public class Articulo implements Serializable {
     @Column(name="PrecioVenta")
     private double precioVenta;
 
-    @OneToOne(mappedBy = "articulo", cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "articulo", cascade = CascadeType.ALL)
+    //private Stock stock;
+    
+    
+    @ManyToOne
+    @JoinColumn(name = "articulo")
     private Stock stock;
 
     @Column(name="estado")
