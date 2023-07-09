@@ -38,13 +38,12 @@
         <form action="recuperarClientes.html" method="post" style="display: inline-block;" >
             <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Clientes</button>
         </form>
+        <form action="listarStock.html" method="post" style="display: inline-block;" >
+            <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Stock</button>
+        </form>
         <form action="listaUsuariosVendedor.html" method="post" style="display: inline-block;">
             <input type="hidden" name="idUsuario" value="<%= usuario.getId() %>">
             <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Usuarios</button>
-        </form>
-        <form action="listarVentas.html" method="post" style="display: inline-block;">
-            <input type="hidden" name="idUsuario" value="<%= usuario.getId() %>">
-            <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Ventas</button>
         </form>
 
     </div>
