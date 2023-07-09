@@ -50,7 +50,7 @@ public class ArticuloDaoImpl implements IArticuloDao {
     }
 
     @Override
-    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca, Long tipo) {
+    public String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Long marca, Long tipo) {
 
         Transaction transaction = null;
         try {
@@ -66,14 +66,9 @@ public class ArticuloDaoImpl implements IArticuloDao {
             tipoArticulo.setId(tipo);
             nuevaMarca.setId(marca);
 
-            Stock stock = articulo.getStock();
-            stock.setCantidad(cantidad);
-            stock.setPrecioCompra(precioCompra);
-
             articulo.setNombre(nombre);
             articulo.setDescripcion(descripcion);
             articulo.setPrecioVenta(precio);
-            articulo.setStock(stock);
             articulo.setTipoArticulo(tipoArticulo);
             articulo.setMarca(nuevaMarca);
 

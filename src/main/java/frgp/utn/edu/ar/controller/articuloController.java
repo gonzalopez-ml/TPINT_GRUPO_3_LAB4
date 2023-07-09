@@ -33,8 +33,7 @@ public class articuloController {
     private ArticuloServicio articuloServicio;
 
     @RequestMapping("/guardarArticulo.html")
-    public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio,
-                                        Integer cantidad, Double precioCompra, HttpSession session) {
+    public ModelAndView guardarArticulo(String nombre, String descripcion, Long marca, Long tipo, Double precio, HttpSession session) {
         if (session != null) {
             Usuario usuarioLogueado = (Usuario) session.getAttribute("usuario");
             if (usuarioLogueado == null || usuarioLogueado.getTipoUsuario() != TipoUsuarioEnum.vendedor) {
@@ -48,17 +47,11 @@ public class articuloController {
 
 
         Articulo articulo = (Articulo) appContext.getBean("articulo");
-        Stock stock =  (Stock) appContext.getBean("stock");
         Marca marca1 =  (Marca) appContext.getBean("marca");
         TipoArticulo tipoArticulo =  (TipoArticulo) appContext.getBean("tipoArticulo");
 
         marca1.setId(marca);
         tipoArticulo.setId(tipo);
-
-        stock.setCantidad(cantidad);
-        stock.setFechaIngreso(new Date());
-        stock.setPrecioCompra(precioCompra);
-        stock.setArticulo(articulo);
 
         articulo.setNombre(nombre);
         articulo.setDescripcion(descripcion);
@@ -66,7 +59,6 @@ public class articuloController {
         articulo.setTipoArticulo(tipoArticulo);
         articulo.setMarca(marca1);
         articulo.setEstado(true);
-        articulo.setStock(stock);
 
 
         //TODO make validations!
@@ -83,7 +75,7 @@ public class articuloController {
 
     @RequestMapping("/actualizarArticulo.html")
     @ResponseBody()
-    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca,
+    public ModelAndView actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Long marca,
                                            Long tipo, HttpSession session) {
         //TODO make validations!
         if (session != null) {
@@ -97,7 +89,7 @@ public class articuloController {
             }
         }
 
-        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio, cantidad, precioCompra, marca, tipo);
+        String seGuardo = articuloServicio.actualizarArticulo(Id, nombre, descripcion, precio, marca, tipo);
 
         ModelAndView MV = new ModelAndView("listarArticulos");
         //TODO make validations!

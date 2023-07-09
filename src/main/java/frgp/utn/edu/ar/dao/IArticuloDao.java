@@ -13,7 +13,7 @@ public interface IArticuloDao {
 
     ArrayList<Articulo> obtenerArticulos();
 
-    String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Integer cantidad, Double precioCompra, Long marca, Long tipo);
+    String actualizarArticulo(Long Id, String nombre, String descripcion, Double precio, Long marca, Long tipo);
 
     Articulo obtenerArticulo(Long articuloId);
 

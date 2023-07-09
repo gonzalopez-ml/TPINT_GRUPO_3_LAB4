@@ -60,12 +60,6 @@
     <label for="precio">Precio de Venta:</label>
     <input type="number" id="precio" name="precio" required><br>
 
-    <label for="cantidad">cantidad:</label>
-    <input type="number" id="cantidad" name="cantidad" required><br>
-
-    <label for="precioCompra">precio de compra:</label>
-    <input type="number" id="precioCompra" name="precioCompra" required><br>
-
     <button type="submit" style="background-color: #3498db; color: #ffffff; padding: 10px 20px; border: none; border-radius: 5px;">Guardar</button>
 </form>
 
@@ -78,8 +72,6 @@
         var descripcion = document.getElementById("descripcion").value;
 
         var precio = document.getElementById("precio").value;
-        var cantidad = document.getElementById("cantidad").value;
-        var precioCompra = document.getElementById("precioCompra").value;
 
         var regex = /^[a-zA-Z\s]+$/; // Expresión regular para validar solo letras
 
@@ -90,16 +82,6 @@
 
         if (isNaN(precio) || precio <= 0) {
             alert("El precio debe ser un valor positivo.");
-            return false; // Detener el envío del formulario
-        }
-
-        if (isNaN(cantidad) || cantidad <= 0) {
-            alert("La cantidad debe ser mayor a 0.");
-            return false; // Detener el envío del formulario
-        }
-
-        if (isNaN(precioCompra) || precioCompra <= 0) {
-            alert("El precio de compra debe ser positivo.");
             return false; // Detener el envío del formulario
         }
 
