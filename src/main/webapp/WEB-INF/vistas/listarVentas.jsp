@@ -6,7 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <% ArrayList<Venta> ventas = (ArrayList<Venta>) request.getAttribute("ventas"); %>
 <% String mensaje = (String) request.getAttribute("mensajeGuardado"); %>
-<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>
+<%--<% Usuario usuario = (Usuario) session.getAttribute("usuario"); %>--%>
 
 <!DOCTYPE html>
 <html>
@@ -20,15 +20,20 @@
 </head>
 <body>
 <%--<% if (session.getAttribute("loggedIn") != null && (Boolean) session.getAttribute("loggedIn") && usuario.getTipoUsuario() == TipoUsuarioEnum.vendedor)  { %> --%>
+<% if (mensaje != null) { %>
+<script>
+    alert("<%= mensaje %>");
+</script>
+<% } %>
 <h1>Listado de Ventas</h1>
 <table id="tablaVentas" class="display responsive">
     <thead>
     <tr>
-        <th data-priority="1">Número de Venta</th>
-        <th data-priority="1">Fecha</th>
-        <th data-priority="1">Cliente</th>
-        <th data-priority="1">Monto Total</th>
-        <th data-priority="2"></th>
+        <th>Número de Venta</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Monto Total</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -94,19 +99,6 @@
 <script>
     $(document).ready(function () {
         $('#tablaVentas').DataTable({
-            "responsive": {
-                "details": {
-                    "type": 'column',
-                    "target": -1
-                }
-            },
-            "columnDefs": [
-                {
-                    "targets": -1,
-                    "className": 'detalle',
-                    "orderable": false
-                }
-            ],
             "paging": true,
             "lengthChange": false,
             "searching": true,

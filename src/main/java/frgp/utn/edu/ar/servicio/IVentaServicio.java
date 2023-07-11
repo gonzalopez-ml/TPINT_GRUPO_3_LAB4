@@ -1,5 +1,6 @@
 package frgp.utn.edu.ar.servicio;
 
+import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.DetalleVenta;
 import frgp.utn.edu.ar.entidad.Venta;
 
@@ -22,4 +23,8 @@ public interface IVentaServicio {
     Venta obtenerVenta(Long idventa);
 
     List<DetalleVenta> obtenerDetallesVenta(Long ventaId);
+
+    //boolean restarCantidadStock(Articulo articulo, int cantidad);
+
+    Long obtenerUltimaVenta();
 }

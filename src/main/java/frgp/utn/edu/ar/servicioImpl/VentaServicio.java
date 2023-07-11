@@ -1,6 +1,7 @@
 package frgp.utn.edu.ar.servicioImpl;
 
 import frgp.utn.edu.ar.dao.IVentaDao;
+import frgp.utn.edu.ar.entidad.Articulo;
 import frgp.utn.edu.ar.entidad.DetalleVenta;
 import frgp.utn.edu.ar.entidad.Venta;
 import frgp.utn.edu.ar.servicio.IVentaServicio;
@@ -36,6 +37,17 @@ public class VentaServicio implements IVentaServicio {
         return ventaDAO.obtenerVentasPorFecha(fecha1, fecha2);
     }
 
+    /*
+    @Override
+    public boolean restarCantidadStock(Articulo articulo, int cantidad) {
+        return ventaDAO.restarCantidadStock(articulo, cantidad);
+    }
+*/
+    @Override
+    public Long obtenerUltimaVenta() {
+        return ventaDAO.ObtenerUltimaVenta();
+    }
+
     @Override
     public Venta obtenerVenta(Long idventa){return ventaDAO.obtenerVenta(idventa);}
 
@@ -59,4 +71,5 @@ public class VentaServicio implements IVentaServicio {
     public void insertarDetalleVenta(DetalleVenta dventa) {
         ventaDAO.insertarDetalleVenta(dventa);
     }
+
 }

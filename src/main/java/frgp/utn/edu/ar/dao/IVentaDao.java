@@ -20,4 +20,8 @@ public interface IVentaDao {
     Venta obtenerVenta(Long ventaId);
 
     List<DetalleVenta> obtenerDetallesVenta(Long id);
+
+    //boolean restarCantidadStock(Articulo articulo, int cantidad);
+
+    Long ObtenerUltimaVenta();
 }

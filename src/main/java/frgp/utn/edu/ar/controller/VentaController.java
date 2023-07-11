@@ -62,11 +62,11 @@ public class VentaController {
         Cliente cliente1 =  (Cliente) appContext.getBean("cliente");
 
         String idCliente = request.getParameter("idCliente");
-        Double montoTotal = Double.valueOf(request.getParameter("montoTotal"));
+        Double montoTotal = 0.0;
 
         cliente1 = clienteServicio.obtenerCliente(Long.valueOf(idCliente));
 
-        String fechaVentaStr = request.getParameter("fechaVenta");
+        String fechaVentaStr = request.getParameter("fecha");
         LocalDate fechaVenta = LocalDate.parse(fechaVentaStr);
 
         Instant instant = fechaVenta.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant();
@@ -74,7 +74,6 @@ public class VentaController {
 
         venta1.setFechaVenta(date);
         venta1.setIdCliente(cliente1);
-        venta1.setMontoTotal(montoTotal);
         venta1.setEstadoVenta(true);
 
         String[] idArticuloValues = request.getParameterValues("detalle[].idArticulo");
@@ -84,16 +83,17 @@ public class VentaController {
 
         for (int i = 0; i < idArticuloValues.length; i++) {
             Articulo art = articuloServicio.obtenerArticulo(Long.valueOf(idArticuloValues[i]));
+            //ventaServicio.restarCantidadStock(art,Integer.parseInt(cantidadValues[i]));
             detalle.setIdArticulo(art);
             detalle.setPrecioVenta(art.getPrecioVenta());
             detalle.setCantidad(Integer.parseInt(cantidadValues[i]));
             detalle.setImporte(art.getPrecioVenta()*Integer.parseInt(cantidadValues[i]));
-            //ventaServicio.insertarDetalleVenta(detalle);
             detalle1.add(detalle);
+            montoTotal += art.getPrecioVenta()*Integer.parseInt(cantidadValues[i]);
         }
 
         venta1.setDetalles(detalle1);
-
+        venta1.setMontoTotal(montoTotal);
         String seGuardo = ventaServicio.insertarVenta(venta1);
 
         //TODO make validations!
@@ -101,7 +101,7 @@ public class VentaController {
 
         ModelAndView MV = new ModelAndView("listarVentas");
         ArrayList<Venta> ventas= ventaServicio.obtenerVentas();
-        //MV.addObject("mensajeGuardado", seGuardo);
+        MV.addObject("mensajeGuardado", seGuardo);
         MV.addObject("ventas", ventas);
 
         return MV;
@@ -169,10 +169,15 @@ public class VentaController {
         //articulos
         ArrayList<Articulo> articulos = articuloServicio.obtenerArticulos();
 
+        LocalDate fechaventa = java.time.LocalDate.now();
+
+        Long ultVenta = ventaServicio.obtenerUltimaVenta();
 
         MV.setViewName("agregarVenta");
         MV.addObject("clientes", clientes);
         MV.addObject("articulos", articulos);
+        MV.addObject("fecha", fechaventa);
+        MV.addObject("nroFactura", ultVenta+1);
 
         return MV;
     }

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 @Repository
 public class VentaDaoImpl implements IVentaDao {
 
+
     @Override
     public String insertarVenta(Venta venta) {
         Transaction transaction = null;
@@ -128,5 +129,17 @@ public class VentaDaoImpl implements IVentaDao {
 
         Venta venta =  (Venta) session.get(Venta.class, ventaId);
         return (ArrayList<DetalleVenta>) venta.getDetalles();
+    }
+
+    @Override
+    public Long ObtenerUltimaVenta() {
+        ConfigHibernate ch = new ConfigHibernate();
+        Session session= ch.abrirConexion();
+
+        session.beginTransaction();
+
+        Venta venta = (Venta) session.createQuery("from Venta ORDER BY Id DESC")
+                .setMaxResults(1).uniqueResult();
+        return venta.getId();
     }
 }
